@@ -1,5 +1,26 @@
-# PC_Benchmark
+# PC Benchmark application in C#
 # Table of contents
+- [Introduction](#introduction)
+  * [Context](#context)
+  * [Specifications](#specifications)
+  * [Objectives](#objectives)
+- [Bibliographic Study](#bibliographic-study)
+- [Analysis](#analysis)
+  * [CPU analysis](#cpu-analysis)
+    + [Type of processor](#type-of-processor)
+    + [Frequency](#frequency)
+    + [Speed of simple operations](#speed-of-simple-operations)
+  * [RAM analysis](#ram-analysis)
+    + [Dimensions](#dimensions)
+    + [Health](#health)
+    + [Transfer speed](#transfer-speed)
+  * [Storage analysis](#storage-analysis)
+  * [Service integration](#service-integration)
+- [Design](#design)
+- [Implementation](#implementation)
+- [Testing and validation](#testing-and-validation)
+- [Conclusions](#conclusions)
+- [Bibliography](#bibliography)
 ___
 # Introduction
 ## Context
