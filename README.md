@@ -1,5 +1,5 @@
 ![UTCN](https://doctorat.utcluj.ro/images/utcn-logo.png)
-## Student Octavian Mihai Matei
+## Student Octavian-Mihai Matei
 ### Group 30431
 ___
 ___
@@ -7,10 +7,10 @@ ___
 # PC Benchmark application in C#
 # Table of contents
 - [Introduction](#introduction)
-  * [Context](#context)
+  * [Goal](#goal)
   * [Specifications](#specifications)
-  * [Objectives](#objectives)
 - [Bibliographic Study](#bibliographic-study)
+- [Planning](#planning)
 - [Analysis](#analysis)
   * [CPU analysis](#cpu-analysis)
     + [Type of processor](#type-of-processor)
@@ -21,19 +21,58 @@ ___
     + [Health](#health)
     + [Transfer speed](#transfer-speed)
   * [Storage analysis](#storage-analysis)
-  * [Service integration](#service-integration)
 - [Design](#design)
+  * [Local application](#local-application)
+  * [Service](#service-integration)
 - [Implementation](#implementation)
+  * [Local application](#local-application)
+  * [Service](#service-integration)
 - [Testing and validation](#testing-and-validation)
 - [Conclusions](#conclusions)
 - [Bibliography](#bibliography)
 ___
 # Introduction
-## Context
+## Goal
+The goal of this project is to design, implement and test a benchmark application that runs on a machine and can determine the following statistics:
+- For the CPU: Type, Frequency and speed of simple operations
+- For the RAM: Dimension, Health and Transfer Speed
+- For the Storage the speed of the location assigned
+These tests should be comparable with the system status and online information provided with the hardware, but could also be ranked on a service against other machines, in order to determine the efficiency of the current system.
 ## Specifications
-## Objectives
+For the local application, the program should apply specific algorithms, in order to determine in the most efficient way the status of the system, as well as work out any major flaw in the RAM configuration. It will run on the machine directly, to be able to access the hardware components more easily. After the tests are done, the results will be displayed in a user-friendly way to the screen and a rank fetched from the service will be displayed. If the user wants to share any information with the service, they will can do it.
 ___
 # Bibliographic Study
+For this kind of application, there are lots of information in different categories, but the main sites were the [Intel website](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-2a-manual.html), the [Microsoft documentation](https://docs.microsoft.com), but also univeristy studies and niche-websites. All of them can be consulted in the [bibliography](#bibliography).
+#### CPU Benchmarking
+Modern CPUs have a lot of fine tunning in order to maximise the efficiency of the hardware, so a lot of work has to be done in order to ensure consistent metrics and repeatable measurements. In order to do that, we have the ability to set the afinity of the processor, manage the transition of the compiler from readable code to machine code, but also a way to asses if the measurements are correct, by checking the internal library managed by Microsoft.
+#### RAM Benchmarking
+There are a lot of algorithms to asses the health of the RAM, from MSCAN algorithms to GALPAT or WALPAT[^6](#bibliography)[^7](#bibliography). All of these algorithms test the read-write ability of the system of specific RAM cells zones so they are all good benchmarks for the health consideration.
+For the transfer speed of the RAM, the read and write speeds will be examined separatly to test the random speed and the sequencial speed of the RAM
+#### Storage Benchmarking
+The storage benchmarking will be similar to the one of the RAM, with the exception that the data must be written on the actual storage, not on the cache memory[^9](#bibliography). This can be done by setting the flag FILE_FLAG_NO_BUFFERING on off.
+___
+# Planning
+- Until 19th October: 
+  * Research the subject and make the introduction, bibliographic study and planning part of the documentation
+- Until 2nd November: 
+  * Write CPU analysis chapter in documentation
+  * Write the design of the CPU benchmark classes in documentation
+  * Write the implementation in documentation
+  * Implement the CPU benchmark classes
+- Until 16th November:
+  * Write RAM and Storage analysis chapter in documentation
+  * Write the design of the RAM and Storage benchmark classes in documentation
+  * Write the implementation in documentation
+  * Implement the RAM and Storage benchmark classes
+- Until 30th November:
+  * Write the design of the GUI in documentation
+  * Write the implementation in documentation
+  * Implement the GUI classes
+- Until 16th December:
+  * Write Design of the Service in documentation
+  * Write the implementation in documentation
+  * Implement the service benchmark classes
+- Present the project on the 16th December
 ___
 # Analysis
 ## CPU analysis
@@ -45,23 +84,28 @@ ___
 ### Health
 ### Transfer speed
 ## Storage analysis
-## Service integration
+### Health
+### Transfer speed
 ___
 # Design
+## Local application
+## Service
 ___
 # Implementation
+## Local application
+## Service
 ___
 # Testing and validation
 ___
 # Conclusions
 ___
 # Bibliography
-- [Intel Architecture information](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-2a-manual.html)
-- [CPUID type](https://docs.microsoft.com/en-us/cpp/intrinsics/cpuid-cpuidex?redirectedfrom=MSDN&view=msvc-160)
-- [CPUID wikipage](https://en.wikipedia.org/wiki/CPUID#EAX.3D4_and_EAX.3DBh:_Intel_thread.2Fcore_and_cache_topology)
-- [Stackoverflow question with a lot of useful links about CPU](https://stackoverflow.com/questions/13772567/how-to-get-the-cpu-cycle-count-in-x86-64-from-c/51907627#51907627)
-- [RAM information](https://en.wikipedia.org/wiki/Random-access_memory)
-- [RAM Algorithms](https://eecs.ceas.uc.edu/~jonewb/Memory.pdf)
-- [RAM Health algorithm](https://www.embedded.com/on-the-fly-ram-tests/)
-- [Storage Benchmark](https://bruun.co/2012/02/07/easy-cpp-benchmarking)
-- [Storage cache problem](https://docs.microsoft.com/en-us/windows/win32/fileio/file-caching?redirectedfrom=MSDN)
+1. [Intel Architecture information](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-2a-manual.html)
+2. [CPUID type](https://docs.microsoft.com/en-us/cpp/intrinsics/cpuid-cpuidex?redirectedfrom=MSDN&view=msvc-160)
+3. [CPUID wikipage](https://en.wikipedia.org/wiki/CPUID#EAX.3D4_and_EAX.3DBh:_Intel_thread.2Fcore_and_cache_topology)
+4. [Stackoverflow question with a lot of useful links about CPU](https://stackoverflow.com/questions/13772567/how-to-get-the-cpu-cycle-count-in-x86-64-from-c/51907627#51907627)
+5. [RAM information](https://en.wikipedia.org/wiki/Random-access_memory)
+6. [Memory Testing](https://eecs.ceas.uc.edu/~jonewb/Memory.pdf)
+7. [On-the-fly RAM tests](https://www.embedded.com/on-the-fly-ram-tests/)
+8. [Storage Benchmark](https://bruun.co/2012/02/07/easy-cpp-benchmarking)
+9. [Storage cache problem](https://docs.microsoft.com/en-us/windows/win32/fileio/file-caching?redirectedfrom=MSDN)
