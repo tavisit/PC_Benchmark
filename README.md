@@ -43,13 +43,27 @@ For the local application, the program should apply specific algorithms, in orde
 ___
 # Bibliographic Study
 For this kind of application, there are lots of information in different categories, but the main sites were the [Intel website](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-2a-manual.html), the [Microsoft documentation](https://docs.microsoft.com), but also univeristy studies and niche-websites. All of them can be consulted in the [bibliography](#bibliography).
+
 #### CPU Benchmarking
 Modern CPUs have a lot of fine tunning in order to maximise the efficiency of the hardware, so a lot of work has to be done in order to ensure consistent metrics and repeatable measurements. In order to do that, we have the ability to set the afinity of the processor, manage the transition of the compiler from readable code to machine code, but also a way to asses if the measurements are correct, by checking the internal library managed by Microsoft.
+
 #### RAM Benchmarking
 There are a lot of algorithms to asses the health of the RAM, from MSCAN algorithms to GALPAT or WALPAT[^6](#bibliography)[^7](#bibliography). All of these algorithms test the read-write ability of the system of specific RAM cells zones so they are all good benchmarks for the health consideration.
-For the transfer speed of the RAM, the read and write speeds will be examined separatly to test the random speed and the sequencial speed of the RAM
+For the transfer speed of the RAM, the read and write speeds will be examined separatly to test the random speed and the sequential speed of the RAM which both have real world implications.
+
+![](https://www.deskdecode.com/wp-content/uploads/2019/06/Random_vs_sequential_access-1.png)
+
+
 #### Storage Benchmarking
-The storage benchmarking will be similar to the one of the RAM, with the exception that the data must be written on the actual storage, not on the cache memory[^9](#bibliography). This can be done by setting the flag FILE_FLAG_NO_BUFFERING on off.
+The storage benchmarking will be similar to the one of the RAM, with the exception that the data must be written on the actual storage, not on the cache memory[^9](#bibliography). Windows creates a 256 KB buffer that is read into a 256 KB cache "slot" in system address space when it is first requested by the cache manager during a file read operation which can be explained with the photo below. This can be turned off by setting the flag FILE_FLAG_NO_BUFFERING on off. 
+
+![](https://docs.microsoft.com/en-us/windows/win32/fileio/images/fig3.png)
+
+
+#### Service Side
+The application will have the ability to display similar systems or better ones, in order to tell the user what is wrong and what can be changed. Moreover, the system will have the ability to upload the system specifications on the service to be used by other people. From our experience, the most facil way for us to implement a Saas[^10](#bibliography) is to use ASP.NET with a MVC methodology.
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/MVC-Process.svg/1200px-MVC-Process.svg.png)
+
 ___
 # Planning
 - Until 19th October: 
@@ -109,3 +123,5 @@ ___
 7. [On-the-fly RAM tests](https://www.embedded.com/on-the-fly-ram-tests/)
 8. [Storage Benchmark](https://bruun.co/2012/02/07/easy-cpp-benchmarking)
 9. [Storage cache problem](https://docs.microsoft.com/en-us/windows/win32/fileio/file-caching?redirectedfrom=MSDN)
+10. [Software as a service](https://en.wikipedia.org/wiki/Software_as_a_service)
+11. [ASP.NET](https://dotnet.microsoft.com/apps/aspnet)
