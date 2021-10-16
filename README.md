@@ -1,3 +1,9 @@
+![UTCN](https://doctorat.utcluj.ro/images/utcn-logo.png)
+## Student Octavian Mihai Matei
+### Group 30431
+___
+___
+___
 # PC Benchmark application in C#
 # Table of contents
 - [Introduction](#introduction)
