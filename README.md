@@ -21,12 +21,28 @@ ___
     + [Health](#health)
     + [Transfer speed](#transfer-speed)
   * [Storage analysis](#storage-analysis)
+  * [Microsoft Defined Data Structures Information](#microsoft-defined-data-structures-information)
+    * [CPU](#cpu)
+    * [GPU](#gpu)
+    * [Battery](#battery)
+    * [RAM](#ram)
+    * [Storage](#storage)
 - [Design](#design)
   * [Local application](#local-application)
-  * [Service](#service-integration)
+    * [CPU Benchmark](#cpu-benchmark)
+    * [RAM Benchmark](#ram-benchmark)
+    * [Storage Benchmark](#storage-benchmark)
+    * [Microsoft Defined Data Structures Integration](#microsoft-defined-data-structures-integration)
+    * [GUI](#gui)
+  * [Service](#service)
 - [Implementation](#implementation)
   * [Local application](#local-application)
-  * [Service](#service-integration)
+    + [CPU Benchmark](#cpu-benchmark)
+    + [RAM Benchmark](#ram-benchmark)
+    + [Storage Benchmark](#storage-benchmark)
+    + [Microsoft Defined Data Structures Integration](#microsoft-defined-data-structures-integration)
+    + [GUI](#gui)
+  * [Service](#service)
 - [Testing and validation](#testing-and-validation)
 - [Conclusions](#conclusions)
 - [Bibliography](#bibliography)
@@ -59,6 +75,8 @@ The storage benchmarking will be similar to the one of the RAM, with the excepti
 
 ![](https://docs.microsoft.com/en-us/windows/win32/fileio/images/fig3.png)
 
+#### Microsoft Defined Data Structures Information
+Microsoft provides with a lot of information about the system, information which can be used to validate and display as "Expected values" to the user. The same information can include the type of the CPU, the battery status, RAM type/frequency etc. These data structures can be used with a simple method call to obtain a lot of information about the current system, without the need to implement complex algorithms and manual testing of the performance.
 
 #### Service Side
 The application will have the ability to display similar systems or better ones, in order to tell the user what is wrong and what can be changed. Moreover, the system will have the ability to upload the system specifications on the service to be used by other people. From our experience, the most facil way for us to implement a Saas[^10](#bibliography) is to use ASP.NET with a MVC methodology.
@@ -71,21 +89,24 @@ ___
 - Until 2nd November: 
   * Write CPU analysis chapter in documentation
   * Write the design of the CPU benchmark classes in documentation
-  * Write the implementation in documentation
   * Implement the CPU benchmark classes
+  * Write the implementation in documentation
 - Until 16th November:
   * Write RAM and Storage analysis chapter in documentation
   * Write the design of the RAM and Storage benchmark classes in documentation
-  * Write the implementation in documentation
   * Implement the RAM and Storage benchmark classes
-- Until 30th November:
-  * Write the design of the GUI in documentation
   * Write the implementation in documentation
+- Until 30th November:
+  * Write the design of the Microsoft Defined Data Structures Integration in documentation
+  * Implement the Microsoft Defined Data Structures Integration classes
+  * Write the implementation in documentation
+  * Write the design of the GUI in documentation
   * Implement the GUI classes
+  * Write the implementation in documentation
 - Until 16th December:
   * Write Design of the Service in documentation
-  * Write the implementation in documentation
   * Implement the service benchmark classes
+  * Write the implementation in documentation
 - Present the project on the 16th December
 ___
 # Analysis
@@ -100,13 +121,29 @@ ___
 ## Storage analysis
 ### Health
 ### Transfer speed
+## Microsoft Defined Data Structures Information
+### CPU
+### GPU
+### Battery
+### RAM
+### Storage
 ___
 # Design
 ## Local application
+### CPU Benchmark
+### RAM Benchmark
+### Storage Benchmark
+### Microsoft Defined Data Structures Integration
+### GUI
 ## Service
 ___
 # Implementation
 ## Local application
+### CPU Benchmark
+### RAM Benchmark
+### Storage Benchmark
+### Microsoft Defined Data Structures Integration
+### GUI
 ## Service
 ___
 # Testing and validation
@@ -125,3 +162,6 @@ ___
 9. [Storage cache problem](https://docs.microsoft.com/en-us/windows/win32/fileio/file-caching?redirectedfrom=MSDN)
 10. [Software as a service](https://en.wikipedia.org/wiki/Software_as_a_service)
 11. [ASP.NET](https://dotnet.microsoft.com/apps/aspnet)
+12. [Microsoft battery Information](https://docs.microsoft.com/en-us/windows/win32/power/battery-information-str)
+13. [Microsoft CPU Information](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)
+14. [Microsoft RAM Information](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/virtual/msvm-memory)
