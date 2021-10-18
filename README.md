@@ -19,7 +19,6 @@ ___
   * [RAM analysis](#ram-analysis)
     + [Dimensions](#dimensions)
     + [Health](#health)
-    + [Transfer speed](#transfer-speed)
   * [Storage analysis](#storage-analysis)
   * [Microsoft Defined Data Structures Information](#microsoft-defined-data-structures-information)
     * [CPU](#cpu)
@@ -65,7 +64,6 @@ Modern CPUs have a lot of fine tunning in order to maximise the efficiency of th
 
 #### RAM Benchmarking
 There are a lot of algorithms to asses the health of the RAM, from MSCAN algorithms to GALPAT or WALPAT[^6](#bibliography)[^7](#bibliography). All of these algorithms test the read-write ability of the system of specific RAM cells zones so they are all good benchmarks for the health consideration.
-For the transfer speed of the RAM, the read and write speeds will be examined separatly to test the random speed and the sequential speed of the RAM which both have real world implications.
 
 ![](https://www.deskdecode.com/wp-content/uploads/2019/06/Random_vs_sequential_access-1.png)
 
@@ -118,10 +116,9 @@ ___
 ## RAM analysis
 ### Dimensions
 ### Health
-### Transfer speed
 ## Storage analysis
+### Dimensions
 ### Health
-### Transfer speed
 ## Microsoft Defined Data Structures Information
 ### CPU
 ### GPU
