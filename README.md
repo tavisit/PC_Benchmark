@@ -81,6 +81,7 @@ Microsoft provides with a lot of information about the system, information which
 
 #### Service Side
 The application will have the ability to display similar systems or better ones, in order to tell the user what is wrong and what can be changed. Moreover, the system will have the ability to upload the system specifications on the service to be used by other people. From our experience, the most facil way for us to implement a Saas[^10](#bibliography) is to use ASP.NET with a MVC methodology.
+
 ![](https://static.javatpoint.com/tutorial/reactjs/images/react-flux-vs-mvc.png)
 
 ___
