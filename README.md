@@ -107,6 +107,7 @@ ___
   * Write Design of the Service in documentation
   * Implement the service benchmark classes
   * Write the implementation in documentation
+  * Finalize the documentation
 - Present the project on the 16th December
 ___
 # Analysis
