@@ -28,13 +28,13 @@ ___
     * [RAM](#ram)
     * [Storage](#storage)
 - [Design](#design)
-  * [Local application](#local-application)
-    * [CPU Benchmark](#cpu-benchmark)
-    * [RAM Benchmark](#ram-benchmark)
-    * [Storage Benchmark](#storage-benchmark)
-    * [Microsoft Defined Data Structures Integration](#microsoft-defined-data-structures-integration)
-    * [GUI](#gui)
-  * [Service](#service)
+  * [Local application](#local-application-design)
+    + [CPU Benchmark Design](#cpu-benchmark-design)
+    + [RAM Benchmark Design](#ram-benchmark-design)
+    + [Storage Benchmark Design](#storage-benchmark-design)
+    + [Microsoft Defined Data Structures Integration Design](#microsoft-defined-data-structures-integration-design)
+    + [GUI Design](#gui-design)
+  * [Service Design](#service-design)
 - [Implementation](#implementation)
   * [Local application](#local-application)
     + [CPU Benchmark](#cpu-benchmark)
@@ -129,13 +129,13 @@ ___
 ### Storage
 ___
 # Design
-## Local application
-### CPU Benchmark
-### RAM Benchmark
-### Storage Benchmark
-### Microsoft Defined Data Structures Integration
-### GUI
-## Service
+## Local application design
+### CPU Benchmark Design
+### RAM Benchmark Design
+### Storage Benchmark Design
+### Microsoft Defined Data Structures Integration Design
+### GUI Design
+## Service Design
 ___
 # Implementation
 ## Local application
