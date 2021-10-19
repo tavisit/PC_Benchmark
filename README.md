@@ -19,9 +19,11 @@ ___
   * [RAM analysis](#ram-analysis)
     + [Dimensions](#ram-dimensions)
     + [Health](#ram-health)
+    + [Speed](#ram-speed)
   * [Storage analysis](#storage-analysis)
     + [Dimensions](#storage-dimensions)
     + [Health](#storage-health)
+    + [Speed](#storage-speed)
   * [Microsoft Defined Data Structures Information](#microsoft-defined-data-structures-information)
     * [CPU](#cpu)
     * [GPU](#gpu)
@@ -124,9 +126,11 @@ ___
 ## RAM analysis
 ### RAM Dimensions
 ### RAM Health
+### RAM Speed
 ## Storage analysis
 ### Storage Dimensions
 ### Storage Health
+### Storage Speed
 ## Microsoft Defined Data Structures Information
 ### CPU
 ### GPU
