@@ -54,9 +54,9 @@ ___
 ## Goal
 The goal of this project is to design, implement and test a benchmark application that runs on a machine and can determine the following statistics:
 - For the CPU: Type, Frequency and speed of simple operations
-- For the RAM: Dimension, Health
-- For the Storage the speed of the location assigned
-- 
+- For the RAM: Dimension, Health, Speed of RAM
+- For the Storage: Dimension, Health, Speed of Storage
+
 These tests should be comparable with the system status and online information provided with the hardware, but could also be ranked on a service against other machines, in order to determine the efficiency of the current system.
 
 ## Specifications
@@ -67,7 +67,9 @@ For this kind of application, there are lots of information in different categor
 
 #### CPU Benchmarking
 Modern CPUs have a lot of fine tunning in order to maximise the efficiency of the hardware, so a lot of work has to be done in order to ensure consistent metrics and repeatable measurements. In order to do that, we have the ability to set the afinity of the processor, manage the transition of the compiler from readable code to machine code, but also a way to asses if the measurements are correct, by checking the internal library managed by Microsoft.
-We also have to bind each iteration of the run to one physical processor with the command export ```OMP_PROC_BIND=true```[^1](#bibliography) and we have to take into account the hyperthreading of the processor by dividing by 2 the physical number of processors
+We also have to bind each iteration of the run to one physical processor with the command export ```OMP_PROC_BIND=true```[^1](#bibliography) and we have to take into account the hyperthreading of the processor by dividing by 2 the physical number of processors.
+
+For the simple operations, a simple sum from 1 to 1.000.000 should suffice. The same would be true for the substraction operation.
 
 #### RAM Benchmarking
 There are a lot of algorithms to asses the health of the RAM, from MSCAN algorithms to GALPAT or WALPAT[^6](#bibliography)[^7](#bibliography). All of these algorithms test the read-write ability of the system of specific RAM cells zones so they are all good benchmarks for the health consideration.
@@ -75,10 +77,17 @@ We will use the sequential vs random write-read modes, ways explained in the pho
 
 ![](https://www.deskdecode.com/wp-content/uploads/2019/06/Random_vs_sequential_access-1.png)
 
-That means data, as bytes, will be declared as a vector/array in order to test the sequential access health and as linked lists for the random access. The data used will either be 0xFF or 0x00 in chunks of 32768 addresses (2^16). In that way, we can assure the user of the efficiency of the algorithm and the real health of the RAM
+That means data, as bytes, will be declared as a vector/array in order to test the sequential access health and as linked lists for the random access. The data used will either be 0xFF or 0x00 in chunks of 32768 addresses (2^16). In that way, we can assure the user of the efficiency of the algorithm and the real health of the RAM.
+
+The speed of the RAM would be the time the algorithm described above takes to write-read into the system memory.
 
 #### Storage Benchmarking
+
+The user should be allowed to choose a drive on which the test takes place. For example, ```Choose Drive C ``` will make the application to run on that drive, in order to test the speed and health of the partition.
+
 The storage benchmarking will be similar to the one of the RAM, with the exception that the data must be written on the actual storage, not in the RAM. There is also the problem where the storage will write in the cache memory[^9](#bibliography) as well as in the actual file, so the test will be nullified. Windows creates a 256 KB buffer that is read into a 256 KB cache "slot" in system address space when it is first requested by the cache manager during a file read operation which can be explained with the photo below. This can be turned off by setting the flag FILE_FLAG_NO_BUFFERING on off. 
+
+The speed of the Storage would be the time the algorithm described above takes to write-read into the system storage.
 
 ![](https://docs.microsoft.com/en-us/windows/win32/fileio/images/fig3.png)
 
