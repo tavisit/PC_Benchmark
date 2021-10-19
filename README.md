@@ -17,9 +17,11 @@ ___
     + [Frequency](#frequency)
     + [Speed of simple operations](#speed-of-simple-operations)
   * [RAM analysis](#ram-analysis)
-    + [Dimensions](#dimensions)
-    + [Health](#health)
+    + [Dimensions](#ram-dimensions)
+    + [Health](#ram-health)
   * [Storage analysis](#storage-analysis)
+    + [Dimensions](#storage-dimensions)
+    + [Health](#storage-health)
   * [Microsoft Defined Data Structures Information](#microsoft-defined-data-structures-information)
     * [CPU](#cpu)
     * [GPU](#gpu)
@@ -50,9 +52,11 @@ ___
 ## Goal
 The goal of this project is to design, implement and test a benchmark application that runs on a machine and can determine the following statistics:
 - For the CPU: Type, Frequency and speed of simple operations
-- For the RAM: Dimension, Health and Transfer Speed
+- For the RAM: Dimension, Health
 - For the Storage the speed of the location assigned
+- 
 These tests should be comparable with the system status and online information provided with the hardware, but could also be ranked on a service against other machines, in order to determine the efficiency of the current system.
+
 ## Specifications
 For the local application, the program should apply specific algorithms, in order to determine in the most efficient way the status of the system, as well as work out any major flaw in the RAM configuration. It will run on the machine directly, to be able to access the hardware components more easily. After the tests are done, the results will be displayed in a user-friendly way to the screen and a rank fetched from the service will be displayed. If the user wants to share any information with the service, they will can do it.
 ___
@@ -110,7 +114,7 @@ ___
   * Implement the service benchmark classes
   * Write the implementation in documentation
   * Finalize the documentation
-- Present the project on the 16th December
+- Present the project on the 14th December
 ___
 # Analysis
 ## CPU analysis
@@ -118,11 +122,11 @@ ___
 ### Frequency
 ### Speed of simple operations
 ## RAM analysis
-### Dimensions
-### Health
+### RAM Dimensions
+### RAM Health
 ## Storage analysis
-### Dimensions
-### Health
+### Storage Dimensions
+### Storage Health
 ## Microsoft Defined Data Structures Information
 ### CPU
 ### GPU
