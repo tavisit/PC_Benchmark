@@ -120,7 +120,7 @@ ___
   * Write the design of the GUI in documentation
   * Implement the GUI classes
   * Write the implementation in documentation
-- Until 16th December:
+- Until 14th December:
   * Write Design of the Service in documentation
   * Implement the service benchmark classes
   * Write the implementation in documentation
