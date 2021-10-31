@@ -9,6 +9,9 @@ namespace Benchmark.Backend
 {
     public class CPU
     {
+        /// <summary>
+        /// Basic constructor
+        /// </summary>
         public CPU()
         {
 
@@ -66,7 +69,7 @@ namespace Benchmark.Backend
         }
 
         /// <summary>
-        /// Run a benchmark which runs a simple string to sha256 algorithm and measure its execution time
+        /// Run a benchmark which runs a simple string to sha256 algorithm and measure its execution frequency
         /// </summary>
         /// <param name="nrTests"></param>
         /// <returns></returns>
@@ -90,7 +93,7 @@ namespace Benchmark.Backend
             return ((float)((float)averageTimeSha256 / (swTotal.Elapsed.TotalMilliseconds)));
         }
         /// <summary>
-        /// Run a benchmark which runs the power function and measure its execution time
+        /// Run a benchmark which runs the power function and measure its execution frequency
         /// </summary>
         /// <param name="nrTests"></param>
         /// <returns></returns>
@@ -102,7 +105,7 @@ namespace Benchmark.Backend
             {
                 Stopwatch sw = new Stopwatch();
                 BigInteger result = new BigInteger(0);
-                BigInteger a = new BigInteger(2);
+                BigInteger a = new BigInteger(3);
                 int b = 128;
                 sw.Start();
                 swTotal.Start();
@@ -118,7 +121,7 @@ namespace Benchmark.Backend
             return ((float)((float)averageTimePower / (swTotal.Elapsed.TotalMilliseconds)));
         }
         /// <summary>
-        /// Run a benchmark which runs a big loop and measure its execution time
+        /// Run a benchmark which runs a big loop and measure its execution frequency
         /// </summary>
         /// <param name="nrTests"></param>
         /// <returns></returns>
@@ -150,6 +153,11 @@ namespace Benchmark.Backend
             return ((float)((float)averageTimeForLoops / (swTotal.Elapsed.TotalMilliseconds)));
         }
 
+        /// <summary>
+        /// Run a benchmark which runs a simple addition and substraction and measure its clock cycles
+        /// </summary>
+        /// <param name="nrTests"></param>
+        /// <returns></returns>
         private int BenchmarkSimpleOperations(int nrTests)
         {
             long averageSimpleOperations = 0;
