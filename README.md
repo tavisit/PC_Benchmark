@@ -216,6 +216,8 @@ ___
 ### CPU Benchmark Design
 The user will not interact directly with these algorithms, but the application will, so bellow it is described the use case diagram:
 
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/USE%20CASES.png?raw=true)
+
 As seen from the use case, the class should provide only three public methods:
 
 1. Constructor -> Basic Constructor
@@ -238,7 +240,7 @@ ___
 # Implementation
 ## Local application
 ### CPU Benchmark
-![](https://i.imgur.com/J0pbr40.png)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
 ### RAM Benchmark
 ### Storage Benchmark
 ### Microsoft Defined Data Structures Integration
