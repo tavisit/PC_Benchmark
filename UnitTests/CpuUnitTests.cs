@@ -14,30 +14,33 @@ namespace UnitTests
         [Test]
         public void FrequencyTest()
         {
+            OneFrequencyTest();
+            OneFrequencyTest();
+            OneFrequencyTest();
+            OneFrequencyTest();
+        }
+
+        [Test]
+        public void OneFrequencyTest()
+        {
+
             float cpuFrequencyValue = cpu.RunFrequencyTests();
-            Assert.IsTrue(cpuFrequencyValue > 2.4);
-            cpuFrequencyValue = cpu.RunFrequencyTests();
-            Assert.IsTrue(cpuFrequencyValue > 2.4);
-            cpuFrequencyValue = cpu.RunFrequencyTests();
-            Assert.IsTrue(cpuFrequencyValue > 2.4);
-            cpuFrequencyValue = cpu.RunFrequencyTests();
-            Assert.IsTrue(cpuFrequencyValue > 2.4);
-            cpuFrequencyValue = cpu.RunFrequencyTests();
-            Assert.IsTrue(cpuFrequencyValue > 2.4);
+            Assert.IsTrue(cpuFrequencyValue > 3);
         }
 
         [Test]
         public void SimpleOperationsTest()
         {
+            OneSimpleOperationsTest();
+            OneSimpleOperationsTest();
+            OneSimpleOperationsTest();
+            OneSimpleOperationsTest();
+        }
+
+        [Test]
+        public void OneSimpleOperationsTest()
+        {
             float cpuSimpleOperationsValue = cpu.RunSimpleOperationsTests();
-            Assert.IsTrue(cpuSimpleOperationsValue < 5);
-            cpuSimpleOperationsValue = cpu.RunSimpleOperationsTests();
-            Assert.IsTrue(cpuSimpleOperationsValue < 5);
-            cpuSimpleOperationsValue = cpu.RunSimpleOperationsTests();
-            Assert.IsTrue(cpuSimpleOperationsValue < 5);
-            cpuSimpleOperationsValue = cpu.RunSimpleOperationsTests();
-            Assert.IsTrue(cpuSimpleOperationsValue < 5);
-            cpuSimpleOperationsValue = cpu.RunSimpleOperationsTests();
             Assert.IsTrue(cpuSimpleOperationsValue < 5);
         }
     }
