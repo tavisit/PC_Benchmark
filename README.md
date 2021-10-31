@@ -5,7 +5,7 @@ ___
 ___
 ___
 # PC Benchmark application in C#
-### QR to the github repository
+### QR to the [github repository](https://github.com/tavisit/PC_Benchmark)
 ![image](https://user-images.githubusercontent.com/28965189/139591086-13d46bde-bc08-434e-9dd7-14d024f98768.png)
 # Table of contents
 - [Introduction](#introduction)
