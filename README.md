@@ -256,7 +256,6 @@ The implementation needed some libraries that should be mentioned here:
 2. [System.Environment](https://docs.microsoft.com/en-us/dotnet/api/system.environment?view=net-5.0) -> Library that detects the environment and outputs the number of physical cores
 3. [System.Diagnostics.ProcessThread](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processthread?view=net-5.0) -> Library that enables the programmer to use the threads and process of the computer
 4. [System.Numerics](https://docs.microsoft.com/en-us/dotnet/api/system.numerics?view=net-5.0) -> Library that enables the use of large numbers for the frequency calculation
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
 
 The implementation of the public methods is the following:
 ##### RunFrequencyTests
