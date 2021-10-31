@@ -15,7 +15,6 @@ ___
 - [Planning](#planning)
 - [Analysis](#analysis)
   * [CPU analysis](#cpu-analysis)
-    + [Type of processor](#type-of-processor)
     + [Frequency](#frequency)
     + [Speed of simple operations](#speed-of-simple-operations)
   * [RAM analysis](#ram-analysis)
@@ -130,29 +129,106 @@ ___
 - Present the project on the 14th December
 ___
 # Analysis
+
 ## CPU analysis
-### Type of processor
+
 ### Frequency
-![](https://i.imgur.com/J0pbr40.png)
+
+By analysing the algorithms for the computation of the frequency of the CPU, three choices were selected for the ease of coding and their clarity. All the results from the algorithms are averaged and the CPU frequency is resulted.
+
+#### First algorithm - Sha256 hashing
+The SHA-256 algorithm is one flavor of Secure Hash Algorithm 2, which was created by the NSA in 2001 as a successor to SHA-1. SHA-256 is a patented cryptographic hash function that outputs a value that is 256 bits long.
+What is the difference between encryption and hashing? In encryption, data is transformed into a secure format that is unreadable unless the recipient has a key. In its encrypted form, the data may be of unlimited size, often just as long as when unencrypted. In hashing, by contrast, data of arbitrary size is mapped to data of fixed size. For example, a 512-bit string of data would be transformed into a 256-bit string through SHA-256 hashing.[^15](#bibliography)
+
+```
+Mathematical behaviour of SHA256
+Ch(x, y,z) = (x ∧ y) ⊕ (¬x ∧ z) (4.2)
+Maj(x, y,z) = (x ∧ y) ⊕ (x ∧ z) ⊕ ( y ∧ z) (4.3)
+∑{256}0 (x) = ROTR 2(x) ⊕ ROTR 13(x) ⊕ ROTR 22(x)
+∑{256}1 (x) = ROTR 6(x) ⊕ ROTR 11(x) ⊕ ROTR 25(x)
+σ{256}0 x = ROTR 7(x) ⊕ ROTR 18(x) ⊕ SHR 3(x)
+σ{256}1 x = ROTR 17(x) ⊕ ROTR 19(x) ⊕ SHR 10(x)
+```
+
+As can be seen from the mathematical behaviour, this benchmark was designed to test the logical speed of the ALU of the CPU.
+
+#### Second algorithm - Exponentiation function
+Exponentiation is a mathematical operation, written as b^n, involving two numbers, the base b and the exponent or power n, and pronounced as "b raised to the power of n". When n is a positive integer, exponentiation corresponds to repeated multiplication of the base, that is: ```b^n = b*b*b*b*...*b*b*b```
+
+As can be seen from the mathematical behaviour, this benchmark was designed to test the multiplication speed of the ALU of the CPU
+
+#### Third algorithm - For loop
+A for-loop is a computer-science concept that has two parts: a header specifying the iteration, and a body which is executed once per iteration. The header explicitly tells the compiler how the loop should behave, by storing the current iteration index, a condition for stop and an increment of the index. On the other hand, the body has implemented the actual code that hav to be run multiple times, but also breaking statements that exit the loop. A simple example in assembly:
+```
+MOV	CL, 10
+L1:
+<LOOP-BODY>
+DEC	CL
+JNZ	L1
+```
+
+As can be seen from the mathematical behaviour, this benchmark was designed to test the speed of the entire CPU.
+
 ### Speed of simple operations
+
+By analysing the algorithms for the computation of speed of simple operations done by the CPU, a simple algorithm was considered, because it needs only the basic ALU behaviour to be executed (addition and substraction). For this, a loop that adds and substracts a given int was considered because it needs only around 3-4 clock cycles to be completed. A simple example in assembly of the behaviour:
+```
+// Addition
+mov     eax, 14
+mov     ebx, 10
+add     eax, ebx
+// Substraction
+mov     eax, 14
+mov     ebx, 10
+sub     eax, ebx
+```
+
 ## RAM analysis
+
 ### RAM Dimensions
+
 ### RAM Health
+
 ### RAM Speed
+
 ## Storage analysis
+
 ### Storage Dimensions
+
 ### Storage Health
+
 ### Storage Speed
+
 ## Microsoft Defined Data Structures Information
+
 ### CPU
+
 ### GPU
+
 ### Battery
+
 ### RAM
+
 ### Storage
 ___
 # Design
 ## Local application design
 ### CPU Benchmark Design
+The user will not interact directly with these algorithms, but the application will, so bellow it is described the use case diagram:
+
+As seen from the use case, the class should provide only three public methods:
+
+1. Constructor -> Basic Constructor
+2. RunFrequencyTests -> Run all the frequency tests and measure their execution time
+3. RunSimpleOperationsTests -> Run all the simple operation tests and measure their execution time
+
+All the other private methods should be:
+
+1. BenchmarkSHA256 -> Run a benchmark which runs a simple string to sha256 algorithm and measure its execution frequency
+2. BenchmarkPower -> Run a benchmark which runs the power function and measure its execution frequency
+3. BenchmarkForLoops -> Run a benchmark which runs a big loop and measure its execution frequency
+4. BenchmarkSimpleOperations -> Run a benchmark which runs a simple addition and substraction and measure its clock cycles
+
 ### RAM Benchmark Design
 ### Storage Benchmark Design
 ### Microsoft Defined Data Structures Integration Design
@@ -162,6 +238,7 @@ ___
 # Implementation
 ## Local application
 ### CPU Benchmark
+![](https://i.imgur.com/J0pbr40.png)
 ### RAM Benchmark
 ### Storage Benchmark
 ### Microsoft Defined Data Structures Integration
@@ -187,3 +264,4 @@ ___
 12. [Microsoft battery Information](https://docs.microsoft.com/en-us/windows/win32/power/battery-information-str)
 13. [Microsoft CPU Information](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)
 14. [Microsoft RAM Information](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/virtual/msvm-memory)
+15. [Sha 256](https://www.n-able.com/blog/sha-256-encryption)
