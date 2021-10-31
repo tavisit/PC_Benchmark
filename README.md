@@ -221,8 +221,17 @@ The user will not interact directly with these algorithms, but the application w
 As seen from the use case, the class should provide only three public methods:
 
 1. Constructor -> Basic Constructor
-2. RunFrequencyTests -> Run all the frequency tests and measure their execution time
-3. RunSimpleOperationsTests -> Run all the simple operation tests and measure their execution time
+2. RunFrequencyTests -> Run all the frequency tests and average their frequency results
+3. RunSimpleOperationsTests -> Run all the simple operation tests and add their execution time
+
+The two public custom methods should force the CPU to run only on one thread and to prioritize the benchmark execution. This should be done on all threads, in order to average the entire CPU speed and characteristics. The following code will be used:
+```
+foreach (ProcessThread pt in Process.GetCurrentProcess().Threads)
+{
+    pt.IdealProcessor = threadIndex;
+    pt.ProcessorAffinity = (IntPtr)(1 << threadIndex);
+}
+```
 
 All the other private methods should be:
 
@@ -230,6 +239,8 @@ All the other private methods should be:
 2. BenchmarkPower -> Run a benchmark which runs the power function and measure its execution frequency
 3. BenchmarkForLoops -> Run a benchmark which runs a big loop and measure its execution frequency
 4. BenchmarkSimpleOperations -> Run a benchmark which runs a simple addition and substraction and measure its clock cycles
+
+All the Benchmark named methods will run multiple times and average the results, in order to obtain a more consistent measurement.
 
 ### RAM Benchmark Design
 ### Storage Benchmark Design
@@ -240,7 +251,181 @@ ___
 # Implementation
 ## Local application
 ### CPU Benchmark
+The implementation needed some libraries that should be mentioned here:
+1. [System.Security.Cryptography](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography?view=net-5.0) -> Library that creates and outputs the SHA of a given raw data string
+2. [System.Environment](https://docs.microsoft.com/en-us/dotnet/api/system.environment?view=net-5.0) -> Library that detects the environment and outputs the number of physical cores
+3. [System.Diagnostics.ProcessThread](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processthread?view=net-5.0) -> Library that enables the programmer to use the threads and process of the computer
+4. [System.Numerics](https://docs.microsoft.com/en-us/dotnet/api/system.numerics?view=net-5.0) -> Library that enables the use of large numbers for the frequency calculation
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+
+The implementation of the public methods is the following:
+##### RunFrequencyTests
+```
+public float RunFrequencyTests()
+{
+    int nrTests = 3;
+    float averageCPU = 0;
+    int processorCount = Environment.ProcessorCount;
+    // For every physical processor
+    for (int i=0;i< processorCount; i++)
+    {
+        // Enable the current processor and set the affinity to it
+        foreach (ProcessThread pt in Process.GetCurrentProcess().Threads)
+        {
+            pt.IdealProcessor = i;
+            pt.ProcessorAffinity = (IntPtr)(1 << i);
+        }
+        // measure the time passed for each of the available algorithms
+        float currentCPUFrequency = BenchmarkSHA256(10000) + BenchmarkPower(10000) + BenchmarkForLoops(1000);
+        averageCPU += currentCPUFrequency;
+    }
+    averageCPU /= (processorCount * nrTests);
+    return averageCPU;
+}
+```
+
+As it can be observed, for every physical processor, the application sets the the CPU affinity to that processor and then it computes the frequency, returning the actual value in GHz.
+
+##### RunSimpleOperationsTests
+```
+public float RunSimpleOperationsTests()
+{
+    float averageCPU = 0;
+    int processorCount = Environment.ProcessorCount;
+    // For every physical processor
+    int nrTests = 100;
+    for (int i = 0; i < processorCount; i++)
+    {
+        // Enable the current processor and set the affinity to it
+        foreach (ProcessThread pt in Process.GetCurrentProcess().Threads)
+        {
+            pt.IdealProcessor = i;
+            pt.ProcessorAffinity = (IntPtr)(1 << i);
+        }
+        // measure the time passed for each of the available algorithms
+        averageCPU += BenchmarkSimpleOperations(nrTests);
+    }
+    averageCPU /= (nrTests * nrTests * 2);
+    averageCPU /= processorCount;
+    return averageCPU;
+}
+```
+
+As it can be observed, for every physical processor, the application sets the the CPU affinity to that processor and then it computes the clock cycles, returning the actual value in clock cycles.
+
+As for the actual tests, the private methods have the following implementation:
+
+##### BenchmarkSHA256
+```
+private float BenchmarkSHA256(int nrTests)
+{
+    Stopwatch swTotal = new Stopwatch();
+    BigInteger averageTimeSha256 = new BigInteger(0);
+    for(int i=0;i< nrTests; i++)
+    {
+        Stopwatch sw = new Stopwatch();
+        string data = RandomString(256);
+        sw.Start();
+        swTotal.Start();
+        string returnSha256 = ComputeSha256Hash(data);
+        sw.Stop();
+        swTotal.Stop();
+        // add to the average the partial execution time
+        averageTimeSha256 = BigInteger.Add(averageTimeSha256, new BigInteger(sw.Elapsed.Ticks));
+    }
+    averageTimeSha256 = BigInteger.Divide(averageTimeSha256, new BigInteger(nrTests));
+    return ((float)((float)averageTimeSha256 / (swTotal.Elapsed.TotalMilliseconds)));
+}
+```
+This method has two clock, one for the actual number of cycles of execution of the algorithm, the other for the total miliseconds passed.
+It will compute the sha256 hash of a random string and count the clock cycles.
+
+##### BenchmarkPower
+
+```
+private float BenchmarkPower(int nrTests)
+{
+    Stopwatch swTotal = new Stopwatch();
+    BigInteger averageTimePower = new BigInteger(0);
+    for (int i = 0; i < nrTests; i++)
+    {
+        Stopwatch sw = new Stopwatch();
+        BigInteger result = new BigInteger(0);
+        BigInteger a = new BigInteger(3);
+        int b = 128;
+        sw.Start();
+        result = BigInteger.Pow(a, b);
+        sw.Stop();
+        // add to the average the partial execution time
+        averageTimePower = BigInteger.Add(averageTimePower, new BigInteger(sw.Elapsed.Ticks));
+    }
+}
+```
+This method has two clock, one for the actual number of cycles of execution of the algorithm, the other for the total miliseconds passed.
+It will compute the power 128 of 3 and count the clock cycles.
+
+##### BenchmarkForLoops
+```
+private float BenchmarkForLoops(int nrTests)
+{
+    Stopwatch swTotal = new Stopwatch();
+    BigInteger averageTimeForLoops = new BigInteger(0);
+    for (int i = 0; i < nrTests; i++)
+    {
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
+        bool a = true;
+        for(int j=0;j< nrTests; j++)
+        {
+            for(int k=0;k< nrTests; k++)
+            {
+                a = !a;
+            }
+        }
+        sw.Stop();
+        // add to the average the partial execution time
+        averageTimeForLoops = BigInteger.Add(averageTimeForLoops, new BigInteger(sw.Elapsed.Ticks));
+    }
+}
+```
+This method has two clock, one for the actual number of cycles of execution of the algorithm, the other for the total miliseconds passed.
+It will loop in loop for nrTests times and inverse the variable a and count the clock cycles.
+
+##### BenchmarkSimpleOperations
+```
+private int BenchmarkSimpleOperations(int nrTests)
+{
+    long averageSimpleOperations = 0;
+    do
+    {
+        averageSimpleOperations = 0;
+        for (int times = 0; times < nrTests; times++)
+        {
+            long a = 0;
+            for (int i = 0; i < nrTests; i++)
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                a = a + 1;
+                sw.Stop();
+                averageSimpleOperations += sw.ElapsedTicks;
+            }
+            for (int i = 0; i < nrTests; i++)
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                a = a - 1;
+                sw.Stop();
+                averageSimpleOperations += sw.ElapsedTicks;
+            }
+        }
+
+    } while (averageSimpleOperations <= (nrTests * nrTests * 2)); // to make sure that a valid number is returned
+}
+```
+This method has two clock, one for the actual number of cycles of execution of the algorithm, the other for the total miliseconds passed.
+It will count the add operation, then the substraction operation to return the number of clock cycles needed to perform such operation.
+
 ### RAM Benchmark
 ### Storage Benchmark
 ### Microsoft Defined Data Structures Integration
@@ -248,6 +433,27 @@ ___
 ## Service
 ___
 # Testing and validation
+## CPU Benchmark
+
+In order to test the efficiency of the algorithm, a batch of unit tests were created. They test the results of the two public methods from the CPU class in the following manner:
+```
+[Test]
+public void OneFrequencyTest()
+{
+
+    float cpuFrequencyValue = cpu.RunFrequencyTests();
+    Assert.IsTrue(cpuFrequencyValue > 3); // This value was chosen looking at the Task Manager of the developing machine
+}
+[Test]
+public void OneSimpleOperationsTest()
+{
+    float cpuSimpleOperationsValue = cpu.RunSimpleOperationsTests();
+    Assert.IsTrue(cpuSimpleOperationsValue < 5);
+}
+```
+Looking at the Task Manager on the machine, it can be seen that when it runs on a specific CPU processor, there is a 100% spike in its activity.
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+
 ___
 # Conclusions
 ___
@@ -266,4 +472,5 @@ ___
 12. [Microsoft battery Information](https://docs.microsoft.com/en-us/windows/win32/power/battery-information-str)
 13. [Microsoft CPU Information](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-processor)
 14. [Microsoft RAM Information](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/virtual/msvm-memory)
-15. [Sha 256](https://www.n-able.com/blog/sha-256-encryption)
+15. [General Microsoft Information](https://docs.microsoft.com/en-us/dotnet/api/?view=net-5.0)
+16. [Sha 256](https://www.n-able.com/blog/sha-256-encryption)
