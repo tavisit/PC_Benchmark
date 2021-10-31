@@ -131,6 +131,7 @@ ___
 ## CPU analysis
 ### Type of processor
 ### Frequency
+[](https://imgur.com/a/midIuQQ)
 ### Speed of simple operations
 ## RAM analysis
 ### RAM Dimensions
