@@ -27,7 +27,6 @@ ___
     + [Speed](#storage-speed)
   * [Microsoft Defined Data Structures Information](#microsoft-defined-data-structures-information)
     * [CPU](#cpu)
-    * [GPU](#gpu)
     * [Battery](#battery)
     * [RAM](#ram)
     * [Storage](#storage)
@@ -203,8 +202,6 @@ sub     eax, ebx
 
 ### CPU
 
-### GPU
-
 ### Battery
 
 ### RAM
@@ -254,11 +251,12 @@ The Storage class should have 3 public classes:
 ##### MicrosoftBenchmark
 
 The MicrosoftBenchmark class should have 5 public classes:
-1. CpuData -> has no parameters and returns a complex object representing CPU information obtained by querring the Microsoft Library
-2. GpuData -> has no parameters and returns a complex object representing GPU information obtained by querring the Microsoft Library
-3. BatteryData -> has no parameters and returns a complex object representing battery information obtained by querring the Microsoft Library
-4. RamData -> has no parameters and returns a complex object representing RAM information obtained by querring the Microsoft Library
-5. StorageData -> has no parameters and returns a complex object representing storage information obtained by querring the Microsoft Library
+1. CpuData -> has no parameters and returns a complex object representing CPU information obtained by querring the Microsoft Library, from Win32_Processor[^17](#bibliography) (Name, NumberOfCores, NumberOfLogicalProcessors, ThreadCount, CurrentClockSpeed, MaxClockSpeed)
+2. BatteryData -> has no parameters and returns a complex object representing battery information obtained by querring the Microsoft Library, from Win32_Battery[^17](#bibliography) (Name, Status, EstimatedChargeRemaining, FullChargeCapacity, DesignCapacity, MaxRechargeTime)
+3. RamData -> has no parameters and returns a complex object representing RAM information obtained by querring the Microsoft Library, from Win32_PhysicalMemory[^17](#bibliography) (Name, Model, Speed, Status, TotalWidth)
+4. StorageData -> has no parameters and returns a complex object representing storage information obtained by querring the Microsoft Library, from Win32_DiskDrive[^17](#bibliography) (Name, Model, BytesPerSector, Size, Status, TotalSectors) 
+
+For the full list of Microsoft Library available information categories, please consult [this link](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Win32_Processor_Information) 
 
 ### CPU Benchmark Design
 The user will not interact directly with these algorithms, but the application will, so bellow it is described the use case diagram:
@@ -520,3 +518,4 @@ ___
 14. [Microsoft RAM Information](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/virtual/msvm-memory)
 15. [General Microsoft Information](https://docs.microsoft.com/en-us/dotnet/api/?view=net-5.0)
 16. [Sha 256](https://www.n-able.com/blog/sha-256-encryption)
+17. [Microsoft Computer System Hardware Classes](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/computer-system-hardware-classes)
