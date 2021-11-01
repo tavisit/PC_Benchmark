@@ -213,6 +213,9 @@ sub     eax, ebx
 ___
 # Design
 ## Local application design
+
+
+
 ### CPU Benchmark Design
 The user will not interact directly with these algorithms, but the application will, so bellow it is described the use case diagram:
 
