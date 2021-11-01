@@ -219,39 +219,39 @@ ___
 
 #### Class explanation
 
-###### Controller
+##### Controller
 
 The controller class should have 2 public classes:
 1. DisplayComputedData -> has no parameters and returns a complex object with all the data that was computed by the algorithms implemented in the application
 2. DisplayMicrosoftData -> has no parameters and returns a complex object with all the data from the Microsoft Library
 
-###### UI
+##### UI
 
 The UI is a cluster of Microsoft forms that display the information to the user. These are composed of two parts:
 1. The actual UI that draws the information
 2. An internal controller that manages the data
 
-###### CPU
+##### CPU
 
 The CPU class should have 2 public classes:
 1. RunFrequencyTests -> has no parameters and returns a float value representing the frequency of the machine in GHz
 2. RunSImpleOperationTests -> has no parameters and returns a float value representing the number of clock cycles the CPU needs to perform simple operations
 
-###### RAM
+##### RAM
 
 The RAM class should have 3 public classes:
 1. DimensionRAM -> has no parameters and returns a float value that represents the space available on the RAM chip in Mb
 2. HealthRAM -> has no parameters and returns a float value representing the health of the RAM stick from 0 to 100% healthy
 3. SpeedRAM -> has no parameters and returns a float value representing the frequency of the RAM stick in MHz
 
-###### Storage
+##### Storage
 
 The Storage class should have 3 public classes:
 1. DimensionStorage -> has a string parameter that represents the path/drive for analysis and returns a float value that represents the space available on the storage path in Mb
 2. HealthStorage -> has a string parameter that represents the path/drive for analysis and returns a float value representing the health of the storage path from 0 to 100% healthy
 3. SpeedStorage -> has a string parameter that represents the path/drive for analysis and returns a float value representing the frequency of the storage in MHz
 
-###### MicrosoftBenchmark
+##### MicrosoftBenchmark
 
 The MicrosoftBenchmark class should have 5 public classes:
 1. CpuData -> has no parameters and returns a complex object representing CPU information obtained by querring the Microsoft Library
