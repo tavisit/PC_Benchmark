@@ -1,13 +1,16 @@
 ![UTCN](https://doctorat.utcluj.ro/images/utcn-logo.png)
 ## Student Octavian-Mihai Matei
 ### Group 30431
-___
-___
-___
+<div style="page-break-after: always;"></div>
+
 # PC Benchmark application in C#
+
 ### QR to the [github repository](https://github.com/tavisit/PC_Benchmark)
 ![image](https://user-images.githubusercontent.com/28965189/139591086-13d46bde-bc08-434e-9dd7-14d024f98768.png)
+<div style="page-break-after: always;"></div>
+
 # Table of contents
+
 - [Introduction](#introduction)
   * [Goal](#goal)
   * [Specifications](#specifications)
@@ -44,8 +47,10 @@ ___
 - [Testing and validation](#testing-and-validation)
 - [Conclusions](#conclusions)
 - [Bibliography](#bibliography)
-___
+<div style="page-break-after: always;"></div>
+
 # Introduction
+
 ## Goal
 The goal of this project is to design, implement and test a benchmark application that runs on a machine and can determine the following statistics:
 - For the CPU: Type, Frequency and speed of simple operations
@@ -56,8 +61,10 @@ These tests should be comparable with the system status and online information p
 
 ## Specifications
 For the local application, the program should apply specific algorithms, in order to determine in the most efficient way the status of the system, as well as work out any major flaw in the RAM configuration. It will run on the machine directly, to be able to access the hardware components more easily. After the tests are done, the results will be displayed in a user-friendly way to the screen and a rank fetched from the service will be displayed. If the user wants to share any information with the service, they will can do it.
-___
+<div style="page-break-after: always;"></div>
+
 # Bibliographic Study
+
 For this kind of application, there are lots of information in different categories, but the main sites were the [Intel website](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-2a-manual.html), the [Microsoft documentation](https://docs.microsoft.com), but also univeristy studies and niche-websites. All of them can be consulted in the [bibliography](#bibliography).
 
 #### CPU Benchmarking
@@ -93,9 +100,10 @@ Microsoft provides with a lot of information about the system, information which
 The application will have the ability to display similar systems or better ones, in order to tell the user what is wrong and what can be changed. Moreover, the system will have the ability to upload the system specifications on the service to be used by other people. From our experience, the most facil way for us to implement a Saas[^10](#bibliography) is to use ASP.NET with a MVC methodology.
 
 ![](https://static.javatpoint.com/tutorial/reactjs/images/react-flux-vs-mvc.png)
+<div style="page-break-after: always;"></div>
 
-___
 # Planning
+
 - Until 19th October: 
   * Research the subject and make the introduction, bibliographic study and planning part of the documentation
 - Until 2nd November: 
@@ -121,7 +129,8 @@ ___
   * Write the implementation in documentation
   * Finalize the documentation
 - Present the project on the 14th December
-___
+<div style="page-break-after: always;"></div>
+
 # Analysis
 
 ## CPU analysis
@@ -202,8 +211,10 @@ sub     eax, ebx
 ### RAM
 
 ### Storage
-___
+<div style="page-break-after: always;"></div>
+
 # Design
+
 ## Local application design
 
 #### Class Diagram
@@ -286,8 +297,10 @@ All the Benchmark named methods will run multiple times and average the results,
 ### Microsoft Defined Data Structures Integration Design
 ### GUI Design
 ## Service Design
-___
+<div style="page-break-after: always;"></div>
+
 # Implementation
+
 ## Local application
 ### CPU Benchmark
 The implementation needed some libraries that should be mentioned here:
@@ -469,8 +482,10 @@ It will count the add operation, then the substraction operation to return the n
 ### Microsoft Defined Data Structures Integration
 ### GUI
 ## Service
-___
+<div style="page-break-after: always;"></div>
+
 # Testing and validation
+
 ## CPU Benchmark
 
 In order to test the efficiency of the algorithm, a batch of unit tests were created. They test the results of the two public methods from the CPU class in the following manner:
@@ -491,11 +506,14 @@ public void OneSimpleOperationsTest()
 ```
 Looking at the Task Manager on the machine, it can be seen that when it runs on a specific CPU processor, there is a 100% spike in its activity.
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+<div style="page-break-after: always;"></div>
 
-___
 # Conclusions
-___
+
+<div style="page-break-after: always;"></div>
+
 # Bibliography
+
 1. [Intel Architecture information](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-2a-manual.html)
 2. [CPUID type](https://docs.microsoft.com/en-us/cpp/intrinsics/cpuid-cpuidex?redirectedfrom=MSDN&view=msvc-160)
 3. [CPUID wikipage](https://en.wikipedia.org/wiki/CPUID#EAX.3D4_and_EAX.3DBh:_Intel_thread.2Fcore_and_cache_topology)
