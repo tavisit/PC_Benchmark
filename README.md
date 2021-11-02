@@ -251,7 +251,6 @@ The MicrosoftBenchmark class should have 5 public classes:
 3. RamData -> has no parameters and returns a complex object representing RAM information obtained by querring the Microsoft Library, from Win32_PhysicalMemory[^17](#bibliography) (Name, Model, Speed, Status, TotalWidth)
 4. StorageData -> has no parameters and returns a complex object representing storage information obtained by querring the Microsoft Library, from Win32_DiskDrive[^17](#bibliography) (Name, Model, BytesPerSector, Size, Status, TotalSectors) 
 
-For the full list of Microsoft Library available information categories, please consult [this link](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Win32_Processor_Information) 
 
 ### CPU Benchmark Design
 The user will not interact directly with these algorithms, but the application will, so bellow it is described the use case diagram:
