@@ -17,10 +17,10 @@ namespace Benchmark.Backend
 
         }
         /// <summary>
-        /// Run all the frequency tests and measure their execution time
+        /// Run all the MIPS tests and measure their execution time
         /// </summary>
         /// <returns></returns>
-        public float RunFrequencyTests()
+        public float RunMIPSTests()
         {
             int nrTests = 3;
             float averageCPU = 0;
@@ -35,8 +35,8 @@ namespace Benchmark.Backend
                     pt.ProcessorAffinity = (IntPtr)(1 << i);
                 }
                 // measure the time passed for each of the available algorithms
-                float currentCPUFrequency = BenchmarkSHA256(10000) + BenchmarkPower(10000) + BenchmarkForLoops(1000);
-                averageCPU += currentCPUFrequency;
+                float currentCPUMIPS = BenchmarkSHA256(10000) + BenchmarkPower(10000) + BenchmarkForLoops(1000);
+                averageCPU += currentCPUMIPS;
             }
             averageCPU /= (processorCount * nrTests);
             return averageCPU;
@@ -69,14 +69,14 @@ namespace Benchmark.Backend
         }
 
         /// <summary>
-        /// Run a benchmark which runs a simple string to sha256 algorithm and measure its execution frequency
+        /// Run a benchmark which runs a simple string to sha256 algorithm and measure its execution MIPS
         /// </summary>
         /// <param name="nrTests"></param>
         /// <returns></returns>
         private float BenchmarkSHA256(int nrTests)
         {
             Stopwatch swTotal = new Stopwatch();
-            BigInteger averageTimeSha256 = new BigInteger(0);
+            BigInteger averageMIPSSha256 = new BigInteger(0);
             for(int i=0;i< nrTests; i++)
             {
                 Stopwatch sw = new Stopwatch();
@@ -87,20 +87,20 @@ namespace Benchmark.Backend
                 sw.Stop();
                 swTotal.Stop();
                 // add to the average the partial execution time
-                averageTimeSha256 = BigInteger.Add(averageTimeSha256, new BigInteger(sw.Elapsed.Ticks));
+                averageMIPSSha256 = BigInteger.Add(averageMIPSSha256, new BigInteger(sw.Elapsed.Ticks));
             }
-            averageTimeSha256 = BigInteger.Divide(averageTimeSha256, new BigInteger(nrTests));
-            return ((float)((float)averageTimeSha256 / (swTotal.Elapsed.TotalMilliseconds)));
+            averageMIPSSha256 = BigInteger.Divide(averageMIPSSha256, new BigInteger(nrTests));
+            return ((float)((float)averageMIPSSha256 / (swTotal.Elapsed.TotalMilliseconds)));
         }
         /// <summary>
-        /// Run a benchmark which runs the power function and measure its execution frequency
+        /// Run a benchmark which runs the power function and measure its execution MIPS
         /// </summary>
         /// <param name="nrTests"></param>
         /// <returns></returns>
         private float BenchmarkPower(int nrTests)
         {
             Stopwatch swTotal = new Stopwatch();
-            BigInteger averageTimePower = new BigInteger(0);
+            BigInteger averageMIPSPower = new BigInteger(0);
             for (int i = 0; i < nrTests; i++)
             {
                 Stopwatch sw = new Stopwatch();
@@ -113,22 +113,22 @@ namespace Benchmark.Backend
                 sw.Stop();
                 swTotal.Stop();
                 // add to the average the partial execution time
-                averageTimePower = BigInteger.Add(averageTimePower, new BigInteger(sw.Elapsed.Ticks));
+                averageMIPSPower = BigInteger.Add(averageMIPSPower, new BigInteger(sw.Elapsed.Ticks));
                 sw.Reset();
             }
 
-            averageTimePower = BigInteger.Divide(averageTimePower, new BigInteger(nrTests));
-            return ((float)((float)averageTimePower / (swTotal.Elapsed.TotalMilliseconds)));
+            averageMIPSPower = BigInteger.Divide(averageMIPSPower, new BigInteger(nrTests));
+            return ((float)((float)averageMIPSPower / (swTotal.Elapsed.TotalMilliseconds)));
         }
         /// <summary>
-        /// Run a benchmark which runs a big loop and measure its execution frequency
+        /// Run a benchmark which runs a big loop and measure its execution MIPS
         /// </summary>
         /// <param name="nrTests"></param>
         /// <returns></returns>
         private float BenchmarkForLoops(int nrTests)
         {
             Stopwatch swTotal = new Stopwatch();
-            BigInteger averageTimeForLoops = new BigInteger(0);
+            BigInteger averageMIPSForLoops = new BigInteger(0);
             for (int i = 0; i < nrTests; i++)
             {
                 Stopwatch sw = new Stopwatch();
@@ -145,12 +145,12 @@ namespace Benchmark.Backend
                 swTotal.Stop();
                 sw.Stop();
                 // add to the average the partial execution time
-                averageTimeForLoops = BigInteger.Add(averageTimeForLoops, new BigInteger(sw.Elapsed.Ticks));
+                averageMIPSForLoops = BigInteger.Add(averageMIPSForLoops, new BigInteger(sw.Elapsed.Ticks));
                 sw.Reset();
             }
 
-            averageTimeForLoops = BigInteger.Divide(averageTimeForLoops, new BigInteger(nrTests));
-            return ((float)((float)averageTimeForLoops / (swTotal.Elapsed.TotalMilliseconds)));
+            averageMIPSForLoops = BigInteger.Divide(averageMIPSForLoops, new BigInteger(nrTests));
+            return ((float)((float)averageMIPSForLoops / (swTotal.Elapsed.TotalMilliseconds)));
         }
 
         /// <summary>

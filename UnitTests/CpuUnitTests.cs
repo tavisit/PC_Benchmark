@@ -12,20 +12,20 @@ namespace UnitTests
         }
 
         [Test]
-        public void FrequencyTest()
+        public void MIPSTest()
         {
-            OneFrequencyTest();
-            OneFrequencyTest();
-            OneFrequencyTest();
-            OneFrequencyTest();
+            OneMIPSTest();
+            OneMIPSTest();
+            OneMIPSTest();
+            OneMIPSTest();
         }
 
         [Test]
-        public void OneFrequencyTest()
+        public void OneMIPSTest()
         {
 
-            float cpuFrequencyValue = cpu.RunFrequencyTests();
-            Assert.IsTrue(cpuFrequencyValue > 3);
+            float cpuMIPSValue = cpu.RunMIPSTests();
+            Assert.IsTrue(cpuMIPSValue > 3.5);
         }
 
         [Test]

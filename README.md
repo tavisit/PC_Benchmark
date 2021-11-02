@@ -18,7 +18,7 @@
 - [Planning](#planning)
 - [Analysis](#analysis)
   * [CPU analysis](#cpu-analysis)
-    + [Frequency](#frequency)
+    + [MIPS](#MIPS)
     + [Speed of simple operations](#speed-of-simple-operations)
   * [RAM analysis](#ram-analysis)
     + [Dimensions](#ram-dimensions)
@@ -53,7 +53,7 @@
 
 ## Goal
 The goal of this project is to design, implement and test a benchmark application that runs on a machine and can determine the following statistics:
-- For the CPU: Type, Frequency and speed of simple operations
+- For the CPU: Type, MIPS and speed of simple operations
 - For the RAM: Dimension, Health, Speed of RAM
 - For the Storage: Dimension, Health, Speed of Storage
 
@@ -135,9 +135,9 @@ The application will have the ability to display similar systems or better ones,
 
 ## CPU analysis
 
-### Frequency
+### MIPS
 
-By analysing the algorithms for the computation of the frequency of the CPU, three choices were selected for the ease of coding and their clarity. All the results from the algorithms are averaged and the CPU frequency is resulted.
+By analysing the algorithms for the computation of the MIPS of the CPU, three choices were selected for the ease of coding and their clarity. All the results from the algorithms are averaged and the CPU MIPS is resulted.
 
 #### First algorithm - Sha256 hashing
 The SHA-256 algorithm is one flavor of Secure Hash Algorithm 2, which was created by the NSA in 2001 as a successor to SHA-1. SHA-256 is a patented cryptographic hash function that outputs a value that is 256 bits long.
@@ -237,7 +237,7 @@ The UI is a cluster of Microsoft forms that display the information to the user.
 ##### CPU
 
 The CPU class should have 2 public classes:
-1. RunFrequencyTests -> has no parameters and returns a float value representing the frequency of the machine in GHz
+1. RunMIPSTests -> has no parameters and returns a float value representing the MIPS of the machine
 2. RunSImpleOperationTests -> has no parameters and returns a float value representing the number of clock cycles the CPU needs to perform simple operations
 
 ##### RAM
@@ -245,14 +245,14 @@ The CPU class should have 2 public classes:
 The RAM class should have 3 public classes:
 1. DimensionRAM -> has no parameters and returns a float value that represents the space available on the RAM chip in Mb
 2. HealthRAM -> has no parameters and returns a float value representing the health of the RAM stick from 0 to 100% healthy
-3. SpeedRAM -> has no parameters and returns a float value representing the frequency of the RAM stick in MHz
+3. SpeedRAM -> has no parameters and returns a float value representing the MIPS of the RAM stick in MHz
 
 ##### Storage
 
 The Storage class should have 3 public classes:
 1. DimensionStorage -> has a string parameter that represents the path/drive for analysis and returns a float value that represents the space available on the storage path in Mb
 2. HealthStorage -> has a string parameter that represents the path/drive for analysis and returns a float value representing the health of the storage path from 0 to 100% healthy
-3. SpeedStorage -> has a string parameter that represents the path/drive for analysis and returns a float value representing the frequency of the storage in MHz
+3. SpeedStorage -> has a string parameter that represents the path/drive for analysis and returns a float value representing the MIPS of the storage in MHz
 
 ##### MicrosoftBenchmark
 
@@ -271,7 +271,7 @@ The user will not interact directly with these algorithms, but the application w
 As seen from the use case, the class should provide only three public methods:
 
 1. Constructor -> Basic Constructor
-2. RunFrequencyTests -> Run all the frequency tests and average their frequency results
+2. RunMIPSTests -> Run all the MIPS tests and average their MIPS results
 3. RunSimpleOperationsTests -> Run all the simple operation tests and add their execution time
 
 The two public custom methods should force the CPU to run only on one thread and to prioritize the benchmark execution. This should be done on all threads, in order to average the entire CPU speed and characteristics. The following code will be used:
@@ -285,9 +285,9 @@ foreach (ProcessThread pt in Process.GetCurrentProcess().Threads)
 
 All the other private methods should be:
 
-1. BenchmarkSHA256 -> Run a benchmark which runs a simple string to sha256 algorithm and measure its execution frequency
-2. BenchmarkPower -> Run a benchmark which runs the power function and measure its execution frequency
-3. BenchmarkForLoops -> Run a benchmark which runs a big loop and measure its execution frequency
+1. BenchmarkSHA256 -> Run a benchmark which runs a simple string to sha256 algorithm and measure its execution MIPS
+2. BenchmarkPower -> Run a benchmark which runs the power function and measure its execution MIPS
+3. BenchmarkForLoops -> Run a benchmark which runs a big loop and measure its execution MIPS
 4. BenchmarkSimpleOperations -> Run a benchmark which runs a simple addition and substraction and measure its clock cycles
 
 All the Benchmark named methods will run multiple times and average the results, in order to obtain a more consistent measurement.
@@ -307,12 +307,12 @@ The implementation needed some libraries that should be mentioned here:
 1. [System.Security.Cryptography](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography?view=net-5.0) -> Library that creates and outputs the SHA of a given raw data string
 2. [System.Environment](https://docs.microsoft.com/en-us/dotnet/api/system.environment?view=net-5.0) -> Library that detects the environment and outputs the number of physical cores
 3. [System.Diagnostics.ProcessThread](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processthread?view=net-5.0) -> Library that enables the programmer to use the threads and process of the computer
-4. [System.Numerics](https://docs.microsoft.com/en-us/dotnet/api/system.numerics?view=net-5.0) -> Library that enables the use of large numbers for the frequency calculation
+4. [System.Numerics](https://docs.microsoft.com/en-us/dotnet/api/system.numerics?view=net-5.0) -> Library that enables the use of large numbers for the MIPS calculation
 
 The implementation of the public methods is the following:
-##### RunFrequencyTests
+##### RunMIPSTests
 ```
-public float RunFrequencyTests()
+public float RunMIPSTests()
 {
     int nrTests = 3;
     float averageCPU = 0;
@@ -327,15 +327,15 @@ public float RunFrequencyTests()
             pt.ProcessorAffinity = (IntPtr)(1 << i);
         }
         // measure the time passed for each of the available algorithms
-        float currentCPUFrequency = BenchmarkSHA256(10000) + BenchmarkPower(10000) + BenchmarkForLoops(1000);
-        averageCPU += currentCPUFrequency;
+        float currentCPUMIPS = BenchmarkSHA256(10000) + BenchmarkPower(10000) + BenchmarkForLoops(1000);
+        averageCPU += currentCPUMIPS;
     }
     averageCPU /= (processorCount * nrTests);
     return averageCPU;
 }
 ```
 
-As it can be observed, for every physical processor, the application sets the the CPU affinity to that processor and then it computes the frequency, returning the actual value in GHz.
+As it can be observed, for every physical processor, the application sets the the CPU affinity to that processor and then it computes the MIPS, returning the actual value.
 
 ##### RunSimpleOperationsTests
 ```
@@ -491,11 +491,11 @@ It will count the add operation, then the substraction operation to return the n
 In order to test the efficiency of the algorithm, a batch of unit tests were created. They test the results of the two public methods from the CPU class in the following manner:
 ```
 [Test]
-public void OneFrequencyTest()
+public void OneMIPSTest()
 {
 
-    float cpuFrequencyValue = cpu.RunFrequencyTests();
-    Assert.IsTrue(cpuFrequencyValue > 3); // This value was chosen looking at the Task Manager of the developing machine
+    float cpuMIPSValue = cpu.RunMIPSTests();
+    Assert.IsTrue(cpuMIPSValue > 3); // This value was chosen looking at the Task Manager of the developing machine
 }
 [Test]
 public void OneSimpleOperationsTest()
