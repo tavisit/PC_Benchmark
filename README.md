@@ -184,19 +184,11 @@ sub     eax, ebx
 
 ## RAM analysis
 
-### RAM Dimensions
-
 ### RAM Health
-
-### RAM Speed
 
 ## Storage analysis
 
-### Storage Dimensions
-
 ### Storage Health
-
-### Storage Speed
 
 ## Microsoft Defined Data Structures Information
 
