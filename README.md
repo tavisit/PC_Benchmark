@@ -289,6 +289,29 @@ The usage of Lists is necessary in the case of:
 - RamInformation - because a system can have one or more Ram sticks inserted into the motherboard
 - StorageInformation - because a system can have one or more storage solutions
 
+For every information class, the same sequence of lines of codes will be respeceted:
+
+```
+ ManagementObjectCollection moc;
+ // Instantiate the information class required
+
+ try
+ {
+     moc = new ManagementObjectSearcher("select * from Win32_[Category]").Get();
+ }
+ catch
+ {
+     return ramInformationList;
+ }
+
+ foreach (ManagementObject obj in moc)
+ {
+     // Get the information needed from the obj["What to get"].ToString();
+ }
+
+ return [Instantiated class with information];
+```
+
 ### GUI Design
 ## Service Design
 <div style="page-break-after: always;"></div>
