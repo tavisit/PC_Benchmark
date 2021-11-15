@@ -282,7 +282,7 @@ All the Benchmark named methods will run multiple times and average the results,
 
 The structure of the Microsoft Defined Structures Integration will be explained using the following Class Diagram:
 
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/USE%20CASES.png?raw=true)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/MicrosoftLibrary.png?raw=true)
 
 The usage of Lists is necessary in the case of:
 - GpuInformation - because a system can have one or more Gpus (in the most cases, a integrated and dedicated one)
