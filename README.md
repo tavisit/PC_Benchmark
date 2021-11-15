@@ -245,10 +245,11 @@ The Storage class should have 3 public classes:
 ##### MicrosoftBenchmark
 
 The MicrosoftBenchmark class should have 5 public classes:
-1. CpuData -> has no parameters and returns a complex object representing CPU information obtained by querring the Microsoft Library, from Win32_Processor[^17](#bibliography) (Name, NumberOfCores, NumberOfLogicalProcessors, ThreadCount, CurrentClockSpeed, MaxClockSpeed)
-2. BatteryData -> has no parameters and returns a complex object representing battery information obtained by querring the Microsoft Library, from Win32_Battery[^17](#bibliography) (Name, Status, EstimatedChargeRemaining, FullChargeCapacity, DesignCapacity, MaxRechargeTime)
-3. RamData -> has no parameters and returns a complex object representing RAM information obtained by querring the Microsoft Library, from Win32_PhysicalMemory[^17](#bibliography) (Name, Model, Speed, Status, TotalWidth)
-4. StorageData -> has no parameters and returns a complex object representing storage information obtained by querring the Microsoft Library, from Win32_DiskDrive[^17](#bibliography) (Name, Model, BytesPerSector, Size, Status, TotalSectors) 
+1. CpuData -> has no parameters and returns a complex object representing CPU information obtained by querring the Microsoft Library, from Win32_Processor[^17](#bibliography) (ProcName, Manufacturer, Version, NrCores, NrLogicalProcessors, NrThreads, CurrentClockSpeed, MaximumClockSpeed)
+2. BatteryData -> has no parameters and returns a complex object representing battery information obtained by querring the Microsoft Library, from Win32_Battery[^17](#bibliography) (Name, Status, EstimatedChargeRemaining, FullChargeCapacity, DesignCapacity, MaxRechargeTime, DesignVoltage)
+3. RamData -> has no parameters and returns a complex object representing RAM information obtained by querring the Microsoft Library, from Win32_PhysicalMemory[^17](#bibliography) (Name, Speed, MinVoltage, MaxVoltage, Status, Capacity)
+4. StorageData -> has no parameters and returns a complex object representing storage information obtained by querring the Microsoft Library, from Win32_DiskDrive[^17](#bibliography) (Name, Model, BytesPerSector, Size, Status, TotalSectors, Partitions, Manufacturer) 
+5. GpuData -> has no parameters and returns a complex object representing gpu information obtained by querring the Microsoft Library, from Win32_VideoController[^17](#bibliography) (Name, DriverVersion, LastErrorCode, MinRefreshRate, MaxRefreshRate, Status, VideoArchitecture, VideoMemoryType, VideoProcessor)
 
 
 ### CPU Benchmark Design
