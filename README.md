@@ -18,7 +18,7 @@
 - [Planning](#planning)
 - [Analysis](#analysis)
   * [CPU analysis](#cpu-analysis)
-    + [MIPS](#MIPS)
+    + [MIPS](#mips)
     + [Speed of simple operations](#speed-of-simple-operations)
   * [RAM analysis](#ram-analysis)
     + [Health](#ram-health)
@@ -500,9 +500,14 @@ It will count the add operation, then the substraction operation to return the n
 ### Storage Benchmark
 ### Microsoft Defined Data Structures Integration
 
-Example of implementation methods using only one instance of the information classes:
+The implementation needed some libraries that should be mentioned here:
+1. [System.Management](https://docs.microsoft.com/en-us/dotnet/api/system.management?view=dotnet-plat-ext-5.0) -> Library that is necessary for the call of the ManagementObjectSearcher method
+2. [System.Collections.Generic](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic?view=net-5.0) -> Library that contains the ```List``` data structure
 
-- In a system, there can be only one battery, so the following implementation was required:
+
+##### Single instance of ManagementObject
+
+In a system, there can be only one battery, so the following implementation was required:
 ```
 public static BatteryInformation BatteryData()
 {
@@ -533,7 +538,10 @@ public static BatteryInformation BatteryData()
 }
 ```
 
-- In a system, there can be one or more storage units, so the following implementation was required:
+##### Multiple instances of ManagementObject
+
+In a system, there can be one or more storage units, so the following implementation was required
+
 ```
 public static List<StorageInformation> StorageData()
 {
@@ -567,6 +575,8 @@ public static List<StorageInformation> StorageData()
     return storageInformationList;
 }
 ```
+
+##### Decoding video card special properties
 
 For the VideoMemoryType, the following method was required to transform the codes of the memory types into useful string data:
 ```
@@ -620,7 +630,9 @@ private static string GetVideoMemoryType(ManagementObject obj)
     }
 }
 ```
+
 For the VideoArchitecture, the following method was required to transform the codes of the Architecture into useful string data:
+
 ```
 private static string GetVideoArchitecture(ManagementObject obj)
 {
@@ -673,7 +685,6 @@ private static string GetVideoArchitecture(ManagementObject obj)
 }
 ```
 
-
 ### GUI
 ## Service
 <div style="page-break-after: always;"></div>
@@ -700,8 +711,38 @@ public void OneSimpleOperationsTest()
 ```
 Looking at the Task Manager on the machine, it can be seen that when it runs on a specific CPU processor, there is a 100% spike in its activity.
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
-<div style="page-break-after: always;"></div>
 
+## Microsoft Defined Data Structures Integration
+
+In order to test the usefulness of the Microsoft library, a batch of unit tests were created. They test the presence of certain elements that are specific to the test machine, as well as, test the good implementation of the MicrosoftBenchmark class.
+
+The tests respect the following model, where ```[Component]``` is the component that needs to be tested (i.e. Cpu):
+```
+[Test]
+public void [Component]DataTest()
+{
+    [ComponentClass] [Component]Information = Benchmark.Backend.MicrosoftBenchmark.[Component]Data();
+    Assert.True([Component]Information != null);
+    // custom tests tailored for each component
+}
+```
+A specific example for this behavior is the ```CpuDataTest()```which has the following implementation:
+```
+[Test]
+public void CpuDataTest()
+{
+    CpuInformation cpuInformation;
+    cpuInformation = Benchmark.Backend.MicrosoftBenchmark.CpuData();
+
+    Assert.True(cpuInformation != null);
+    Assert.True(cpuInformation.Manufacturer.ContainsLower("Intel"));
+    Assert.True(cpuInformation.NrCores.EqualsLower("4"));
+    Assert.True(cpuInformation.NrLogicalProcessors.EqualsLower("8"));
+}
+```
+As can be seen from the Test Explorer provided by VisualStudio, all the tests pass:
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+<div style="page-break-after: always;"></div>
 # Conclusions
 
 <div style="page-break-after: always;"></div>
