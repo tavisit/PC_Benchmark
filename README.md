@@ -189,11 +189,15 @@ sub     eax, ebx
 ## Storage analysis
 
 ### Storage Health
+<div style="page-break-after: always;"></div>
 
 ## Microsoft Defined Data Structures Information
 
-The Computer System Hardware category groups classes together that represent hardware related objects. Examples include input devices, hard disks, expansion cards, video devices, networking devices, and system power. These classes provide information about the system without any computation, only using ManagementObjectSearcher object, which retrieves a collection of management objects based on a specified query. This class is one of the more commonly used entry points to retrieving management information. For example, it can be used to enumerate all disk drives, network adapters, processes and many more management objects on a system, or to query for all network connections that are up, services that are paused, and so on. When instantiated, an instance of this class takes as input a WMI query represented in an ObjectQuery or its derivatives, and optionally a ManagementScope representing the WMI namespace to execute the query in. It can also take additional advanced options in an EnumerationOptions. When the Get() method on this object is invoked, the ManagementObjectSearcher executes the given query in the specified scope and returns a collection of management objects that match the query in a ManagementObjectCollection.
+The Computer System Hardware category groups classes together that represent hardware related objects. Examples include input devices, hard disks, expansion cards, video devices, networking devices, and system power. These classes provide information about the system without any computation, only using ManagementObjectSearcher object, which retrieves a collection of management objects based on a specified query. This class is one of the more commonly used entry points to retrieving management information. 
 
+For example, it can be used to enumerate all disk drives, network adapters, processes and many more management objects on a system, or to query for all network connections that are up, services that are paused, and so on. When instantiated, an instance of this class takes as input a WMI query represented in an ObjectQuery or its derivatives, and optionally a ManagementScope representing the WMI namespace to execute the query in. It can also take additional advanced options in an EnumerationOptions. 
+
+When the Get() method on this object is invoked, the ManagementObjectSearcher executes the given query in the specified scope and returns a collection of management objects that match the query in a ManagementObjectCollection.
 <div style="page-break-after: always;"></div>
 
 # Design
@@ -246,6 +250,7 @@ The MicrosoftBenchmark class should have 5 public classes:
 4. StorageData -> has no parameters and returns a complex object representing storage information obtained by querring the Microsoft Library, from Win32_DiskDrive[^17](#bibliography) (Name, Model, BytesPerSector, Size, Status, TotalSectors, Partitions, Manufacturer) 
 5. GpuData -> has no parameters and returns a complex object representing gpu information obtained by querring the Microsoft Library, from Win32_VideoController[^17](#bibliography) (Name, DriverVersion, LastErrorCode, MinRefreshRate, MaxRefreshRate, Status, VideoArchitecture, VideoMemoryType, VideoProcessor)
 
+<div style="page-break-after: always;"></div>
 
 ### CPU Benchmark Design
 The user will not interact directly with these algorithms, but the application will, so bellow it is described the use case diagram:
@@ -294,7 +299,6 @@ For every information class, the same sequence of lines of codes will be respece
 ```
  ManagementObjectCollection moc;
  // Instantiate the information class required
-
  try
  {
      moc = new ManagementObjectSearcher("select * from Win32_[Category]").Get();
@@ -303,12 +307,10 @@ For every information class, the same sequence of lines of codes will be respece
  {
      return ramInformationList;
  }
-
  foreach (ManagementObject obj in moc)
  {
      // Get the information needed from the obj["What to get"].ToString();
  }
-
  return [Instantiated class with information];
 ```
 
@@ -495,9 +497,12 @@ private int BenchmarkSimpleOperations(int nrTests)
 ```
 This method has two clock, one for the actual number of cycles of execution of the algorithm, the other for the total miliseconds passed.
 It will count the add operation, then the substraction operation to return the number of clock cycles needed to perform such operation.
+<div style="page-break-after: always;"></div>
 
 ### RAM Benchmark
 ### Storage Benchmark
+<div style="page-break-after: always;"></div>
+
 ### Microsoft Defined Data Structures Integration
 
 The implementation needed some libraries that should be mentioned here:
@@ -513,7 +518,6 @@ public static BatteryInformation BatteryData()
 {
     ManagementObjectCollection moc;
     BatteryInformation batteryInformation = new BatteryInformation();
-
     try
     {
         moc = new ManagementObjectSearcher(new ObjectQuery("select * from Win32_Battery")).Get();
@@ -522,7 +526,6 @@ public static BatteryInformation BatteryData()
     {
         return batteryInformation;
     }
-
     foreach (ManagementObject obj in moc)
     {
         if (obj["Name"] != null)  batteryInformation.Name = obj["Name"].ToString();
@@ -533,7 +536,6 @@ public static BatteryInformation BatteryData()
         if (obj["DesignVoltage"] != null)  batteryInformation.DesignVoltage = obj["DesignVoltage"].ToString();
         if (obj["MaxRechargeTime"] != null)  batteryInformation.MaxRechargeTime = obj["MaxRechargeTime"].ToString();
     }
-
     return batteryInformation;
 }
 ```
@@ -547,7 +549,6 @@ public static List<StorageInformation> StorageData()
 {
     ManagementObjectCollection moc;
     List<StorageInformation> storageInformationList = new List<StorageInformation>();
-
     try
     {
         moc = new ManagementObjectSearcher("select * from Win32_DiskDrive").Get();
@@ -556,7 +557,6 @@ public static List<StorageInformation> StorageData()
     {
         return storageInformationList;
     }
-
     foreach (ManagementObject obj in moc)
     {
         StorageInformation storageInformation = new StorageInformation();
@@ -587,46 +587,32 @@ private static string GetVideoMemoryType(ManagementObject obj)
     {
         case "1":
             return "Other";
-
         case "2":
             return "Unknown";
-
         case "3":
             return "VRAM";
-
         case "4":
             return "DRAM";
-
         case "5":
             return "SRAM";
-
         case "6":
             return "WRAM";
-
         case "7":
             return "EDO RAM";
-
         case "8":
             return "Burst Synchronous DRAM";
-
         case "9":
             return "Pipelined Burst SRAM";
-
         case "10":
             return "CDRAM";
-
         case "11":
             return "3DRAM";
-
         case "12":
             return "SDRAM";
-
         case "13":
             return "SGRAM";
-
         default:
             return "Error";
-
     }
 }
 ```
@@ -641,46 +627,32 @@ private static string GetVideoArchitecture(ManagementObject obj)
     {
         case "1":
             return "Other";
-
         case "2":
             return "Unknown";
-
         case "3":
             return "CGA";
-
         case "4":
             return "EGA";
-
         case "5":
             return "VGA";
-
         case "6":
             return "SVGA";
-
         case "7":
             return "MDA";
-
         case "8":
             return "HGC";
-
         case "9":
             return "MCGA";
-
         case "10":
             return "8514A";
-
         case "11":
             return "XGA";
-
         case "12":
             return "Linear Frame Buffer";
-
         case "160":
             return "PC-98";
-
         default:
             return "Error";
-
     }
 }
 ```
@@ -711,6 +683,7 @@ public void OneSimpleOperationsTest()
 ```
 Looking at the Task Manager on the machine, it can be seen that when it runs on a specific CPU processor, there is a 100% spike in its activity.
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+<div style="page-break-after: always;"></div>
 
 ## Microsoft Defined Data Structures Integration
 
@@ -743,6 +716,7 @@ public void CpuDataTest()
 As can be seen from the Test Explorer provided by VisualStudio, all the tests pass:
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
 <div style="page-break-after: always;"></div>
+
 # Conclusions
 
 <div style="page-break-after: always;"></div>
