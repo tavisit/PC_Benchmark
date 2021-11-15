@@ -312,6 +312,8 @@ For every information class, the same sequence of lines of codes will be respece
  return [Instantiated class with information];
 ```
 
+For the GpuInformation, the VideoMemoryType and VideoArchitecture will be encoded, so a decoder in the form of a switch will be required.
+
 ### GUI Design
 ## Service Design
 <div style="page-break-after: always;"></div>
