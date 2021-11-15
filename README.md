@@ -714,7 +714,7 @@ public void CpuDataTest()
 }
 ```
 As can be seen from the Test Explorer provided by VisualStudio, all the tests pass:
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/MicrosoftLibrary_UnitTests.png?raw=true)
 <div style="page-break-after: always;"></div>
 
 # Conclusions
