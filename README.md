@@ -499,6 +499,181 @@ It will count the add operation, then the substraction operation to return the n
 ### RAM Benchmark
 ### Storage Benchmark
 ### Microsoft Defined Data Structures Integration
+
+Example of implementation methods using only one instance of the information classes:
+
+- In a system, there can be only one battery, so the following implementation was required:
+```
+public static BatteryInformation BatteryData()
+{
+    ManagementObjectCollection moc;
+    BatteryInformation batteryInformation = new BatteryInformation();
+
+    try
+    {
+        moc = new ManagementObjectSearcher(new ObjectQuery("select * from Win32_Battery")).Get();
+    }
+    catch
+    {
+        return batteryInformation;
+    }
+
+    foreach (ManagementObject obj in moc)
+    {
+        if (obj["Name"] != null)  batteryInformation.Name = obj["Name"].ToString();
+        if (obj["Status"] != null)  batteryInformation.Status = obj["Status"].ToString();
+        if (obj["EstimatedChargeRemaining"] != null)  batteryInformation.EstimatedChargeRemaining = obj["EstimatedChargeRemaining"].ToString();
+        if (obj["FullChargeCapacity"] != null)  batteryInformation.FullChargeCapacity = obj["FullChargeCapacity"].ToString();
+        if (obj["DesignCapacity"] != null)  batteryInformation.DesignCapacity = obj["DesignCapacity"].ToString();
+        if (obj["DesignVoltage"] != null)  batteryInformation.DesignVoltage = obj["DesignVoltage"].ToString();
+        if (obj["MaxRechargeTime"] != null)  batteryInformation.MaxRechargeTime = obj["MaxRechargeTime"].ToString();
+    }
+
+    return batteryInformation;
+}
+```
+
+- In a system, there can be one or more storage units, so the following implementation was required:
+```
+public static List<StorageInformation> StorageData()
+{
+    ManagementObjectCollection moc;
+    List<StorageInformation> storageInformationList = new List<StorageInformation>();
+
+    try
+    {
+        moc = new ManagementObjectSearcher("select * from Win32_DiskDrive").Get();
+    }
+    catch
+    {
+        return storageInformationList;
+    }
+
+    foreach (ManagementObject obj in moc)
+    {
+        StorageInformation storageInformation = new StorageInformation();
+
+        if (obj["Name"] != null) storageInformation.Name = obj["Name"].ToString();
+        if (obj["Model"] != null) storageInformation.Model = obj["Model"].ToString();
+        if (obj["BytesPerSector"] != null) storageInformation.BytesPerSector = obj["BytesPerSector"].ToString();
+        if (obj["Size"] != null) storageInformation.Size = obj["Size"].ToString();
+        if (obj["Status"] != null) storageInformation.Status = obj["Status"].ToString();
+        if (obj["TotalSectors"] != null) storageInformation.TotalSectors = obj["TotalSectors"].ToString();
+        if (obj["Partitions"] != null) storageInformation.TotalSectors = obj["Partitions"].ToString();
+        if (obj["Manufacturer"] != null) storageInformation.TotalSectors = obj["Manufacturer"].ToString();
+
+        storageInformationList.Add(storageInformation);
+    }
+    return storageInformationList;
+}
+```
+
+For the VideoMemoryType, the following method was required to transform the codes of the memory types into useful string data:
+```
+private static string GetVideoMemoryType(ManagementObject obj)
+{
+    string videoMemoryType = obj["VideoMemoryType"].ToString();
+    switch (videoMemoryType)
+    {
+        case "1":
+            return "Other";
+
+        case "2":
+            return "Unknown";
+
+        case "3":
+            return "VRAM";
+
+        case "4":
+            return "DRAM";
+
+        case "5":
+            return "SRAM";
+
+        case "6":
+            return "WRAM";
+
+        case "7":
+            return "EDO RAM";
+
+        case "8":
+            return "Burst Synchronous DRAM";
+
+        case "9":
+            return "Pipelined Burst SRAM";
+
+        case "10":
+            return "CDRAM";
+
+        case "11":
+            return "3DRAM";
+
+        case "12":
+            return "SDRAM";
+
+        case "13":
+            return "SGRAM";
+
+        default:
+            return "Error";
+
+    }
+}
+```
+For the VideoArchitecture, the following method was required to transform the codes of the Architecture into useful string data:
+```
+private static string GetVideoArchitecture(ManagementObject obj)
+{
+    string videoArchitecture = obj["VideoArchitecture"].ToString();
+    switch (videoArchitecture)
+    {
+        case "1":
+            return "Other";
+
+        case "2":
+            return "Unknown";
+
+        case "3":
+            return "CGA";
+
+        case "4":
+            return "EGA";
+
+        case "5":
+            return "VGA";
+
+        case "6":
+            return "SVGA";
+
+        case "7":
+            return "MDA";
+
+        case "8":
+            return "HGC";
+
+        case "9":
+            return "MCGA";
+
+        case "10":
+            return "8514A";
+
+        case "11":
+            return "XGA";
+
+        case "12":
+            return "Linear Frame Buffer";
+
+        case "160":
+            return "PC-98";
+
+        default:
+            return "Error";
+
+    }
+}
+```
+
+
 ### GUI
 ## Service
 <div style="page-break-after: always;"></div>
