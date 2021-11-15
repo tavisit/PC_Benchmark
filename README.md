@@ -192,13 +192,8 @@ sub     eax, ebx
 
 ## Microsoft Defined Data Structures Information
 
-### CPU
+The Computer System Hardware category groups classes together that represent hardware related objects. Examples include input devices, hard disks, expansion cards, video devices, networking devices, and system power. These classes provide information about the system without any computation, only using ManagementObjectSearcher object, which retrieves a collection of management objects based on a specified query. This class is one of the more commonly used entry points to retrieving management information. For example, it can be used to enumerate all disk drives, network adapters, processes and many more management objects on a system, or to query for all network connections that are up, services that are paused, and so on. When instantiated, an instance of this class takes as input a WMI query represented in an ObjectQuery or its derivatives, and optionally a ManagementScope representing the WMI namespace to execute the query in. It can also take additional advanced options in an EnumerationOptions. When the Get() method on this object is invoked, the ManagementObjectSearcher executes the given query in the specified scope and returns a collection of management objects that match the query in a ManagementObjectCollection.
 
-### Battery
-
-### RAM
-
-### Storage
 <div style="page-break-after: always;"></div>
 
 # Design
@@ -284,6 +279,16 @@ All the Benchmark named methods will run multiple times and average the results,
 ### RAM Benchmark Design
 ### Storage Benchmark Design
 ### Microsoft Defined Data Structures Integration Design
+
+The structure of the Microsoft Defined Structures Integration will be explained using the following Class Diagram:
+
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/USE%20CASES.png?raw=true)
+
+The usage of Lists is necessary in the case of:
+- GpuInformation - because a system can have one or more Gpus (in the most cases, a integrated and dedicated one)
+- RamInformation - because a system can have one or more Ram sticks inserted into the motherboard
+- StorageInformation - because a system can have one or more storage solutions
+
 ### GUI Design
 ## Service Design
 <div style="page-break-after: always;"></div>
