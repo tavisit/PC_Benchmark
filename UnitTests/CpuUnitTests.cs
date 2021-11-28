@@ -41,7 +41,7 @@ namespace UnitTests
         public void OneSimpleOperationsTest()
         {
             float cpuSimpleOperationsValue = cpu.RunSimpleOperationsTests();
-            Assert.IsTrue(cpuSimpleOperationsValue < 5);
+            Assert.IsTrue(cpuSimpleOperationsValue < 3);
         }
     }
 }
