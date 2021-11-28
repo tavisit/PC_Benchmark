@@ -184,11 +184,30 @@ sub     eax, ebx
 
 ## RAM analysis
 
+Random-access memory (RAM) is a form of computer memory that can be read and changed in any order, typically used to store working data and machine code. A random-access memory device allows data items to be read or written in almost the same amount of time irrespective of the physical location of data inside the memory, in contrast with other direct-access data storage media (such as hard disks, CD-RWs, DVD-RWs and the older magnetic tapes and drum memory), where the time required to read and write data items varies significantly depending on their physical locations on the recording medium, due to mechanical limitations such as media rotation speeds and arm movement.
+
+RAM contains multiplexing and demultiplexing circuitry, to connect the data lines to the addressed storage for reading or writing the entry. Usually more than one bit of storage is accessed by the same address, and RAM devices often have multiple data lines and are said to be "8-bit" or "16-bit", etc. devices.
+
 ### RAM Health
+
+In order to test the RAM Health, a bit per bit check will be required. Unfortunately, this is impossible in the modern programming languages, so a 4/8 bytes chunk will be used at a time in the form of an int. These values will be x5555 (0101010101010101) and xAAAA (1010101010101010).
+
+These values will be written and read from RAM multiple times and discrepancys between write and read values will be added to an errorCheck. In the end, the fraction of the errorCheck and total values will be computed and a procentage will be displayed.
 
 ## Storage analysis
 
+A hard disk drive (HDD), hard disk, hard drive, or fixed disk is an electro-mechanical data storage device that stores and retrieves digital data using magnetic storage and one or more rigid rapidly rotating platters coated with magnetic material. The platters are paired with magnetic heads, usually arranged on a moving actuator arm, which read and write data to the platter surfaces. Data is accessed in a random-access manner, meaning that individual blocks of data can be stored and retrieved in any order. HDDs are a type of non-volatile storage, retaining stored data even when powered off. Modern HDDs are typically in the form of a small rectangular box.
+
+Introduced by IBM in 1956, HDDs were the dominant secondary storage device for general-purpose computers beginning in the early 1960s. HDDs maintained this position into the modern era of servers and personal computers, though personal computing devices produced in large volume, like cell phones and tablets, rely on flash memory storage devices. More than 224 companies have produced HDDs historically, though after extensive industry consolidation most units are manufactured by Seagate, Toshiba, and Western Digital. HDDs dominate the volume of storage produced (exabytes per year) for servers. Though production is growing slowly (by exabytes shipped), sales revenues and unit shipments are declining because solid-state drives (SSDs) have higher data-transfer rates, higher areal storage density, somewhat better reliability, and much lower latency and access times.
+
+The revenues for SSDs, most of which use NAND flash memory, slightly exceed those for HDDs. Flash storage products had more than twice the revenue of hard disk drives as of 2017. Though SSDs have four to nine times higher cost per bit, they are replacing HDDs in applications where speed, power consumption, small size, high capacity and durability are important. Cost per bit for SSDs is falling, and the price premium over HDDs has narrowed.
+
 ### Storage Health
+
+In order to test the Storage Health, a bit per bit check will be required. Unfortunately, this is impossible in the modern programming languages, so a 4/8 bytes chunk will be used at a time in the form of an int. These values will be x5555 (0101010101010101) and xAAAA (1010101010101010).
+
+These values will be written and read from RAM multiple times and discrepancys between write and read values will be added to an errorCheck. In the end, the fraction of the errorCheck and total values will be computed and a procentage will be displayed.
+
 <div style="page-break-after: always;"></div>
 
 ## Microsoft Defined Data Structures Information
@@ -282,7 +301,33 @@ All the other private methods should be:
 All the Benchmark named methods will run multiple times and average the results, in order to obtain a more consistent measurement.
 
 ### RAM Benchmark Design
+
+![](https://www.deskdecode.com/wp-content/uploads/2019/06/Random_vs_sequential_access-1.png)
+
+As seen from the UML, this benchmark will be composed from only one class, with two public methods:
+
+1. SequentialAccess with size of data type and number of repetitions as parameters -> Runs a benchmark for the sequential read/write capabilities of the RAM.
+2. RandomAccess with size of data type and number of repetitions- as parameters> Runs a benchmark for the random rear/write capabilities of the RAM.
+
+Random access in ram will be made with the help of the library ```using System.Collections.Generic```, using lists in the form of the ```List<uint>``` data type. 
+Sequential access in ram will be made using arrays in the form of the ```uint[]``` data type.
+
+The test will firstly write ```0x5555``` equivalent integer to RAM for a number of times equivalent to the size parameter, then it will read from RAM and count the errors. The same algorithm will be applied for the ```0xAAAA``` equivalent integer on RAM and append to the error variable.
+
+In order to bypass the CPU cache used for small variables, byte size wise, one needs to run the benchmark for bigger sizes of lists and arrays, using a lot of data to detect any diffect. INTEL manual recomands around 1024 * size of RAM of data ran for around one week.
+
 ### Storage Benchmark Design
+
+![](https://docs.microsoft.com/en-us/windows/win32/fileio/images/fig3.png)
+
+As seen from the UML, this benchmark will be composed from only one class, with only one public method:
+
+1. FileAccess with file path, size of file and number of repetitions as parameters-> Runs a benchmark for the write/read capabilities of the Storage solutions.
+
+The user should be able to select from the UI the file path in which the test runs. The test will firstly write ```0x5555``` equivalent integer to the file for a number of lines equivalent to the size parameter, then it will read the file and count the errors. The same algorithm will be applied for the ```0xAAAA``` equivalent integer to the file and append to the error variable.
+
+In order to bypass the Storage cache used for small variables, byte size wise, one needs to run the benchmark for bigger sizes of files, using a lot of data to detect any diffect.
+
 ### Microsoft Defined Data Structures Integration Design
 
 The structure of the Microsoft Defined Structures Integration will be explained using the following Class Diagram:
@@ -500,7 +545,90 @@ It will count the add operation, then the substraction operation to return the n
 <div style="page-break-after: always;"></div>
 
 ### RAM Benchmark
+
+RAM Benchmark consists of two tests, one sequential, one random. As it was explained in the design part. In the RAM will be written 0x5555 and 0xAAAA in order to test every bit of the bytes involved.
+
+The two are implemented as followed:
+```
+[Type according to sequential or random] setOfNumbers = new type;
+int errorCount = 0;
+
+for (int repeat = 0; repeat < repeating; repeat++)
+{
+    setOfNumbers.Clear();
+    for (int i = 0; i < size; i++)
+    {
+        setOfNumbers.Add(_firstValue);
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        if (setOfNumbers[i] != _firstValue)
+        {
+            errorCount++;
+        }
+    }
+
+    setOfNumbers.Clear();
+    for (int i = 0; i < size; i++)
+    {
+        setOfNumbers.Add(_secondValue);
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        if (setOfNumbers[i] != _secondValue)
+        {
+            errorCount++;
+        }
+    }
+}
+return 100 * ((float)errorCount / (float)size);
+```
+<div style="page-break-after: always;"></div>
+
 ### Storage Benchmark
+
+For the Storage Benchmark, the user chooses a path to which the file will be written, the size of the file and the number of repetitions. In the file will be written 0x5555 and 0xAAAA in order to test every bit of the bytes involved.
+
+The implementation is the following:
+```
+if(File.Exists(path))
+{
+    File.Delete(path);
+}
+
+for (int i = 0; i < size; i++)
+{
+    File.AppendAllText(path, _firstValue.ToString()+"\n");
+}
+
+foreach (string line in File.ReadLines(path))
+{
+    if(_firstValue.ToString() != line)
+    {
+        errorCount++;
+    }
+}
+File.Delete(path);
+for (int i = 0; i < size; i++)
+{
+
+    File.AppendAllText(path, _secondValue.ToString() + "\n");
+}
+
+foreach (string line in File.ReadLines(path))
+{
+    if (_secondValue.ToString() != line)
+    {
+        errorCount++;
+    }
+}
+File.Delete(path);
+}
+
+return 100 * ((float)errorCount / (float)size);
+```
 <div style="page-break-after: always;"></div>
 
 ### Microsoft Defined Data Structures Integration
@@ -685,6 +813,46 @@ Looking at the Task Manager on the machine, it can be seen that when it runs on 
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
 <div style="page-break-after: always;"></div>
 
+## RAM
+
+In order to test the efficiency of the algorithm, a batch of unit tests were created. They test the results of the two public methods from the RAM class in the following manner:
+```
+[Test]
+public void RAMTest()
+{
+    float sequentialRAM = ram.SequentialAccess(size, repetitions);
+    float randomRAM = ram.RandomAccess(size, repetitions);
+
+    Assert.IsTrue(sequentialRAM == 0);
+    Assert.IsTrue(randomRAM == 0);
+}
+```
+
+## Storage
+
+In order to test the efficiency of the algorithm, a batch of unit tests were created. They test the result of the only public methods from the Storage class in the following manner:
+```
+[Test]
+public void SystemDriveTest()
+{
+    float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", size, repetitions);
+
+    Assert.IsTrue(storageTest == 0);
+}
+
+[Test]
+public void OtherDriveTest()
+{
+    float storageTest = storage.FileAccess(@"D:\\", size, repetitions);
+
+    Assert.IsTrue(storageTest == 0);
+
+    storageTest = storage.FileAccess(@"E:\\", size, repetitions);
+
+    Assert.IsTrue(storageTest == 0);
+}
+```
+
 ## Microsoft Defined Data Structures Integration
 
 In order to test the usefulness of the Microsoft library, a batch of unit tests were created. They test the presence of certain elements that are specific to the test machine, as well as, test the good implementation of the MicrosoftBenchmark class.
@@ -740,3 +908,4 @@ As can be seen from the Test Explorer provided by VisualStudio, all the tests pa
 15. [General Microsoft Information](https://docs.microsoft.com/en-us/dotnet/api/?view=net-5.0)
 16. [Sha 256](https://www.n-able.com/blog/sha-256-encryption)
 17. [Microsoft Computer System Hardware Classes](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/computer-system-hardware-classes)
+18. [Hard Disk Information](https://en.wikipedia.org/wiki/Hard_disk_drive)
