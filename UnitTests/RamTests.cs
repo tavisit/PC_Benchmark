@@ -11,14 +11,34 @@ namespace UnitTests
             ram = new Benchmark.Backend.RAM();
         }
 
-        //[Test]
-        //public void MIPSTest()
-        //{
-        //    float sequentialRAM = ram.SequentialAccess(32000000);
-        //    float randomRAM = ram.RandomAccess(32000000);
+        [Test]
+        public void LightRAMTest()
+        {
+            float sequentialRAM = ram.SequentialAccess(1073741824, 1);
+            float randomRAM = ram.RandomAccess(1073741824, 1);
 
-        //    Assert.IsTrue(sequentialRAM > 0);
-        //    Assert.IsTrue(randomRAM > 0);
-        //}
+            Assert.IsTrue(sequentialRAM == 0);
+            Assert.IsTrue(randomRAM == 0);
+        }
+
+        [Test]
+        public void MediumRAMTest()
+        {
+            float sequentialRAM = ram.SequentialAccess(1073741824, 32);
+            float randomRAM = ram.RandomAccess(1073741824, 32);
+
+            Assert.IsTrue(sequentialRAM == 0);
+            Assert.IsTrue(randomRAM == 0);
+        }
+
+        [Test]
+        public void StressRAMTest()
+        {
+            float sequentialRAM = ram.SequentialAccess(1073741824, 10240);
+            float randomRAM = ram.RandomAccess(1073741824, 10240);
+
+            Assert.IsTrue(sequentialRAM >= 0);
+            Assert.IsTrue(randomRAM >= 0);
+        }
     }
 }

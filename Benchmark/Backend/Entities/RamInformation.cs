@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Benchmark.Backend.Entities
+﻿namespace Benchmark.Backend.Entities
 {
     public class RamInformation
     {
@@ -14,6 +8,8 @@ namespace Benchmark.Backend.Entities
         private string maxVoltage;
         private string status;
         private string capacity;
+        private string dataWidth;
+        private string totalWidth;
 
         public string Name { get => name; set => name = value; }
         public string Speed { get => speed; set => speed = value; }
@@ -21,5 +17,7 @@ namespace Benchmark.Backend.Entities
         public string MaxVoltage { get => maxVoltage; set => maxVoltage = value; }
         public string Status { get => status; set => status = value; }
         public string Capacity { get => capacity; set => capacity = value; }
+        public string DataWidth { get => dataWidth; set => dataWidth = value; }
+        public string TotalWidth { get => totalWidth; set => totalWidth = value; }
     }
 }

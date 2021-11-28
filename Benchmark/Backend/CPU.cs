@@ -83,7 +83,7 @@ namespace Benchmark.Backend
                 string data = RandomString(256);
                 sw.Start();
                 swTotal.Start();
-                string returnSha256 = ComputeSha256Hash(data);
+                ComputeSha256Hash(data);
                 sw.Stop();
                 swTotal.Stop();
                 // add to the average the partial execution time
@@ -104,12 +104,11 @@ namespace Benchmark.Backend
             for (int i = 0; i < nrTests; i++)
             {
                 Stopwatch sw = new Stopwatch();
-                BigInteger result = new BigInteger(0);
                 BigInteger a = new BigInteger(3);
                 int b = 128;
                 sw.Start();
                 swTotal.Start();
-                result = BigInteger.Pow(a, b);
+                BigInteger result = BigInteger.Pow(a, b);
                 sw.Stop();
                 swTotal.Stop();
                 // add to the average the partial execution time
@@ -160,7 +159,7 @@ namespace Benchmark.Backend
         /// <returns></returns>
         private int BenchmarkSimpleOperations(int nrTests)
         {
-            long averageSimpleOperations = 0;
+            long averageSimpleOperations;
             do
             {
                 averageSimpleOperations = 0;
@@ -171,7 +170,7 @@ namespace Benchmark.Backend
                     {
                         Stopwatch sw = new Stopwatch();
                         sw.Start();
-                        a = a + 1;
+                        a++;
                         sw.Stop();
                         averageSimpleOperations += sw.ElapsedTicks;
                     }
@@ -179,7 +178,7 @@ namespace Benchmark.Backend
                     {
                         Stopwatch sw = new Stopwatch();
                         sw.Start();
-                        a = a - 1;
+                        a--;
                         sw.Stop();
                         averageSimpleOperations += sw.ElapsedTicks;
                     }

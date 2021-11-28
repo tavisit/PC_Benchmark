@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Benchmark.Backend
 {
@@ -12,72 +7,77 @@ namespace Benchmark.Backend
         private uint _firstValue = 0x5555;
         private uint _secondValue = 0xAAAA;
 
-        public float DimensionRAM()
-        {
-            return RandomAccess(32000);
-        }
-
-        public float SequentialAccess(int size)
+        public float SequentialAccess(int size, int repeating)
         {
             uint[] setOfNumbers = new uint[size];
-
-            for(int i=0;i<size;i++)
-            {
-                setOfNumbers[i] = _firstValue;
-            }
-
             int errorCount = 0;
-            for(int i=0;i<size;i++)
+
+            for (int repeat = 0;repeat<repeating;repeat++)
             {
-                if(setOfNumbers[i]!=_firstValue)
+                for (int i = 0; i < size; i++)
                 {
-                    errorCount++;
+                    setOfNumbers[i] = _firstValue;
+                }
+
+                for (int i = 0; i < size; i++)
+                {
+                    if (setOfNumbers[i] != _firstValue)
+                    {
+                        errorCount++;
+                    }
+                }
+
+                for (int i = 0; i < size; i++)
+                {
+                    setOfNumbers[i] = _secondValue;
+                }
+
+                for (int i = 0; i < size; i++)
+                {
+                    if (setOfNumbers[i] != _secondValue)
+                    {
+                        errorCount++;
+                    }
                 }
             }
-
-            for (int i = 0; i < size; i++)
-            {
-                setOfNumbers[i] = _secondValue;
-            }
-
-            for (int i = 0; i < size; i++)
-            {
-                if (setOfNumbers[i] != _secondValue)
-                {
-                    errorCount++;
-                }
-            }
+            
             return 100*((float)errorCount/(float)size);
         }
 
-        public float RandomAccess(int size)
+        public float RandomAccess(int size, int repeating)
         {
             List<uint> setOfNumbers = new List<uint>();
-
-            for (int i = 0; i < size; i++)
-            {
-                setOfNumbers.Add(_firstValue);
-            }
-
             int errorCount = 0;
-            for (int i = 0; i < size; i++)
-            {
-                if (setOfNumbers[i] != _firstValue)
-                {
-                    errorCount++;
-                }
-            }
-            setOfNumbers.Clear();
-            for (int i = 0; i < size; i++)
-            {
-                setOfNumbers.Add(_secondValue);
-            }
 
-            for (int i = 0; i < size; i++)
+            for (int repeat = 0; repeat < repeating; repeat++)
             {
-                if (setOfNumbers[i] != _secondValue)
+
+                setOfNumbers.Clear();
+                for (int i = 0; i < size; i++)
                 {
-                    errorCount++;
+                    setOfNumbers.Add(_firstValue);
+                }
+
+                for (int i = 0; i < size; i++)
+                {
+                    if (setOfNumbers[i] != _firstValue)
+                    {
+                        errorCount++;
+                    }
+                }
+
+                setOfNumbers.Clear();
+                for (int i = 0; i < size; i++)
+                {
+                    setOfNumbers.Add(_secondValue);
+                }
+
+                for (int i = 0; i < size; i++)
+                {
+                    if (setOfNumbers[i] != _secondValue)
+                    {
+                        errorCount++;
+                    }
                 }
             }
             return 100 * ((float)errorCount / (float)size);

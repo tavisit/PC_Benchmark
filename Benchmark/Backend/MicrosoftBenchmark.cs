@@ -1,5 +1,4 @@
 ﻿using Benchmark.Backend.Entities;
-using System;
 using System.Collections.Generic;
 using System.Management;
 
@@ -60,6 +59,9 @@ namespace Benchmark.Backend
                 if (obj["MinVoltage"] != null) ramInformation.MinVoltage = obj["MinVoltage"].ToString();
                 if (obj["MaxVoltage"] != null) ramInformation.MaxVoltage = obj["MaxVoltage"].ToString();
                 if (obj["Capacity"] != null) ramInformation.Capacity = obj["Capacity"].ToString();
+                if (obj["Capacity"] != null) ramInformation.Capacity = obj["Capacity"].ToString();
+                if (obj["TotalWidth"] != null) ramInformation.TotalWidth = obj["TotalWidth"].ToString();
+                if (obj["DataWidth"] != null) ramInformation.DataWidth = obj["DataWidth"].ToString();
 
                 ramInformationList.Add(ramInformation);
             }

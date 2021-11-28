@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Benchmark.Backend.Utilities
+﻿namespace Benchmark.Backend.Utilities
 {
     public static class StringExtensions
     {
