@@ -120,19 +120,19 @@ namespace Benchmark.Frontend
             {
                 case "Light":
                     sequentialReturn = ram.SequentialAccess(67108864, 16);
-                    randomReturn = ram.SequentialAccess(67108864, 16);
+                    randomReturn = ram.RandomAccess(67108864, 16);
                     break;
                 case "Medium":
                     sequentialReturn = ram.SequentialAccess(67108864, 32*16);
-                    randomReturn = ram.SequentialAccess(67108864, 32 * 16);
+                    randomReturn = ram.RandomAccess(67108864, 32 * 16);
                     break;
                 case "Stress":
                     sequentialReturn = ram.SequentialAccess(67108864, 128 * 16);
-                    randomReturn = ram.SequentialAccess(67108864, 128 * 16);
+                    randomReturn = ram.RandomAccess(67108864, 128 * 16);
                     break;
                 case "Extreme":
                     sequentialReturn = ram.SequentialAccess(67108864, 1024 * 16);
-                    randomReturn = ram.SequentialAccess(67108864, 1024 * 16);
+                    randomReturn = ram.RandomAccess(67108864, 1024 * 16);
                     break;
             }
 
@@ -144,10 +144,9 @@ namespace Benchmark.Frontend
 
         private string storageTypeTest(string path)
         {
-
             Backend.Storage storage = new Backend.Storage();
             float returnValue = 0.0f;
-            switch (ramChoice)
+            switch (storageChoice)
             {
                 case "Light":
                     returnValue = storage.FileAccess(path, 8096, 1);
@@ -163,20 +162,8 @@ namespace Benchmark.Frontend
                     break;
             }
 
-            if(returnValue < 0.0f)
-            {
-                return "Something went wrong!";
-            }
-            if(returnValue == 0.0f)
-            {
-                return "The health of the storage at " + path + " is \n" +
-                    returnValue.ToString();
-            }
-            else
-            {
-                return "The health of the storage at " + path + " is \n" + 
-                    returnValue.ToString();
-            }
+            return "The health of the storage at " + path + " is \n" +
+                returnValue.ToString();
         }
 
         private void ComputedBenchmark_Load(object sender, EventArgs e)

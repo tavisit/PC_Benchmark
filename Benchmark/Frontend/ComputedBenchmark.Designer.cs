@@ -367,7 +367,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ComputedBenchmark";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Some statistics";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.ComputedBenchmark_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
