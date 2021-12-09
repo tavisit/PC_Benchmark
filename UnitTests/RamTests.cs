@@ -34,11 +34,14 @@ namespace UnitTests
         [Test]
         public void StressRAMTest()
         {
-            float sequentialRAM = ram.SequentialAccess(1073741824, 1024);
-            float randomRAM = ram.RandomAccess(1073741824, 1024);
+            float sequentialRAM = ram.SequentialAccess(1073741824, 128);
+            float randomRAM = ram.RandomAccess(1073741824, 128);
 
-            Assert.IsTrue(sequentialRAM >= 0);
-            Assert.IsTrue(randomRAM >= 0);
+            TestContext.Progress.WriteLine("SequentialAccess: " + sequentialRAM.ToString());
+            TestContext.Progress.WriteLine("RandomAccess: " + randomRAM.ToString());
+
+            Assert.IsTrue(sequentialRAM == 100);
+            Assert.IsTrue(randomRAM == 100);
         }
     }
 }

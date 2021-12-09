@@ -17,7 +17,7 @@ namespace Benchmark.Backend
             {
                 if (repeat % 32 == 0)
                 {
-                    TestContext.Progress.WriteLine(repeat);
+                    TestContext.Progress.WriteLine("FileAccess: " + repeat.ToString());
                 }
 
                 try

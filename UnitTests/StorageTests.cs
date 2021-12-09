@@ -24,11 +24,11 @@ namespace UnitTests
         {
             float storageTest = storage.FileAccess(@"D:\\", 8096, 1);
 
-            Assert.IsTrue(storageTest == 0);
+            Assert.IsTrue(storageTest == 100);
 
             storageTest = storage.FileAccess(@"E:\\", 8096, 1);
 
-            Assert.IsTrue(storageTest == 0);
+            Assert.IsTrue(storageTest == 100);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace UnitTests
         {
             float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 8096, 32);
 
-            Assert.IsTrue(storageTest == 0);
+            Assert.IsTrue(storageTest == 100);
         }
 
         [Test]
@@ -44,31 +44,35 @@ namespace UnitTests
         {
             float storageTest = storage.FileAccess(@"D:\\", 8096, 32);
 
-            Assert.IsTrue(storageTest == 0);
+            Assert.IsTrue(storageTest == 100);
 
             storageTest = storage.FileAccess(@"E:\\", 8096, 32);
 
-            Assert.IsTrue(storageTest == 0);
+            Assert.IsTrue(storageTest == 100);
         }
 
         [Test]
         public void StressSystemDriveTest()
         {
-            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 8096, 16384);
+            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 8096, 1024);
 
-            Assert.IsTrue(storageTest == 0);
+            TestContext.Progress.WriteLine("FileAccess: " + storageTest.ToString());
+
+            Assert.IsTrue(storageTest == 100);
         }
 
         [Test]
         public void StressSsdDriveTest()
         {
-            float storageTest = storage.FileAccess(@"D:\\", 8096, 16384);
+            float storageTest = storage.FileAccess(@"D:\\", 8096, 1024);
 
-            Assert.IsTrue(storageTest == 0);
+            TestContext.Progress.WriteLine("FileAccess: " + storageTest.ToString());
+            Assert.IsTrue(storageTest == 100);
 
-            storageTest = storage.FileAccess(@"E:\\", 8096, 16384);
+            storageTest = storage.FileAccess(@"E:\\", 8096, 512);
+            TestContext.Progress.WriteLine("FileAccess: " + storageTest.ToString());
 
-            Assert.IsTrue(storageTest == 0);
+            Assert.IsTrue(storageTest == 100);
         }
     }
 }

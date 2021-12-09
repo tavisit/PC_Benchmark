@@ -17,7 +17,7 @@ namespace Benchmark.Backend
             {
                 if(repeat % 32 == 0)
                 {
-                    TestContext.Progress.WriteLine(repeat);
+                    TestContext.Progress.WriteLine("SequentialAccess: "+repeat.ToString());
                 }
 
                 for (int i = 0; i < size; i++)
@@ -59,7 +59,7 @@ namespace Benchmark.Backend
             {
                 if (repeat % 32 == 0)
                 {
-                    TestContext.Progress.WriteLine(repeat);
+                    TestContext.Progress.WriteLine("RandomAccess: " + repeat.ToString());
                 }
 
                 setOfNumbers.Clear();
