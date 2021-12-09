@@ -50,6 +50,7 @@
             this.textBox5.Location = new System.Drawing.Point(12, 9);
             this.textBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(1312, 32);
             this.textBox5.TabIndex = 29;
             this.textBox5.Text = "Microsoft Fetched Statistics";
@@ -63,6 +64,7 @@
             this.textBox4.Location = new System.Drawing.Point(1068, 98);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(256, 32);
             this.textBox4.TabIndex = 28;
             this.textBox4.Text = "Battery Statistics";
@@ -76,6 +78,7 @@
             this.textBox.Location = new System.Drawing.Point(804, 98);
             this.textBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox.Name = "textBox";
+            this.textBox.ReadOnly = true;
             this.textBox.Size = new System.Drawing.Size(256, 32);
             this.textBox.TabIndex = 26;
             this.textBox.Text = "Storage Statistics";
@@ -89,6 +92,7 @@
             this.textBox3.Location = new System.Drawing.Point(540, 98);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(256, 32);
             this.textBox3.TabIndex = 24;
             this.textBox3.Text = "RAM Statistics";
@@ -102,6 +106,7 @@
             this.textBox2.Location = new System.Drawing.Point(276, 98);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(256, 32);
             this.textBox2.TabIndex = 22;
             this.textBox2.Text = "GPU Statistics";
@@ -115,6 +120,7 @@
             this.textBox1.Location = new System.Drawing.Point(12, 98);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(256, 32);
             this.textBox1.TabIndex = 20;
             this.textBox1.Text = "CPU Statistics";
@@ -143,6 +149,7 @@
             this.cpuTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cpuTextBox.Location = new System.Drawing.Point(12, 138);
             this.cpuTextBox.Name = "cpuTextBox";
+            this.cpuTextBox.ReadOnly = true;
             this.cpuTextBox.Size = new System.Drawing.Size(256, 443);
             this.cpuTextBox.TabIndex = 30;
             this.cpuTextBox.Text = "";
@@ -154,6 +161,7 @@
             this.gpuTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpuTextBox.Location = new System.Drawing.Point(276, 138);
             this.gpuTextBox.Name = "gpuTextBox";
+            this.gpuTextBox.ReadOnly = true;
             this.gpuTextBox.Size = new System.Drawing.Size(256, 443);
             this.gpuTextBox.TabIndex = 31;
             this.gpuTextBox.Text = "";
@@ -165,6 +173,7 @@
             this.ramTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ramTextBox.Location = new System.Drawing.Point(540, 138);
             this.ramTextBox.Name = "ramTextBox";
+            this.ramTextBox.ReadOnly = true;
             this.ramTextBox.Size = new System.Drawing.Size(256, 443);
             this.ramTextBox.TabIndex = 32;
             this.ramTextBox.Text = "";
@@ -176,6 +185,7 @@
             this.storageTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.storageTextBox.Location = new System.Drawing.Point(804, 138);
             this.storageTextBox.Name = "storageTextBox";
+            this.storageTextBox.ReadOnly = true;
             this.storageTextBox.Size = new System.Drawing.Size(256, 443);
             this.storageTextBox.TabIndex = 33;
             this.storageTextBox.Text = "";
@@ -187,6 +197,7 @@
             this.batteryTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.batteryTextBox.Location = new System.Drawing.Point(1068, 138);
             this.batteryTextBox.Name = "batteryTextBox";
+            this.batteryTextBox.ReadOnly = true;
             this.batteryTextBox.Size = new System.Drawing.Size(256, 407);
             this.batteryTextBox.TabIndex = 34;
             this.batteryTextBox.Text = "";

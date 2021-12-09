@@ -57,9 +57,10 @@
             this.textBox5.Location = new System.Drawing.Point(13, 14);
             this.textBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(1312, 32);
             this.textBox5.TabIndex = 17;
-            this.textBox5.Text = "Microsoft Fetched Statistics";
+            this.textBox5.Text = "Custom Made Statistics";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button3
@@ -86,6 +87,7 @@
             this.textBox4.Location = new System.Drawing.Point(986, 103);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(339, 32);
             this.textBox4.TabIndex = 35;
             this.textBox4.Text = "Storage Statistics";
@@ -99,6 +101,7 @@
             this.textBox1.Location = new System.Drawing.Point(495, 103);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(352, 32);
             this.textBox1.TabIndex = 37;
             this.textBox1.Text = "RAM Statistics";
@@ -112,6 +115,7 @@
             this.textBox2.Location = new System.Drawing.Point(14, 103);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(345, 32);
             this.textBox2.TabIndex = 39;
             this.textBox2.Text = "CPU Statistics";
@@ -141,6 +145,7 @@
             this.textBox3.Location = new System.Drawing.Point(13, 399);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(345, 32);
             this.textBox3.TabIndex = 43;
             this.textBox3.Text = "Result";
@@ -154,6 +159,7 @@
             this.textBox6.Location = new System.Drawing.Point(495, 399);
             this.textBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(352, 32);
             this.textBox6.TabIndex = 46;
             this.textBox6.Text = "Result";
@@ -183,6 +189,7 @@
             this.textBox7.Location = new System.Drawing.Point(986, 399);
             this.textBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(339, 32);
             this.textBox7.TabIndex = 49;
             this.textBox7.Text = "Result";
@@ -212,6 +219,7 @@
             this.textBox8.Location = new System.Drawing.Point(495, 263);
             this.textBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(352, 32);
             this.textBox8.TabIndex = 52;
             this.textBox8.Text = "Test Type";
@@ -257,6 +265,7 @@
             this.textBox9.Location = new System.Drawing.Point(986, 263);
             this.textBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(339, 32);
             this.textBox9.TabIndex = 54;
             this.textBox9.Text = "Test Type";
@@ -285,6 +294,7 @@
             this.selectionFileTextBox.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold);
             this.selectionFileTextBox.Location = new System.Drawing.Point(986, 211);
             this.selectionFileTextBox.Name = "selectionFileTextBox";
+            this.selectionFileTextBox.ReadOnly = true;
             this.selectionFileTextBox.Size = new System.Drawing.Size(339, 44);
             this.selectionFileTextBox.TabIndex = 58;
             this.selectionFileTextBox.Text = "";
@@ -296,6 +306,7 @@
             this.storageTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.storageTextBox.Location = new System.Drawing.Point(986, 439);
             this.storageTextBox.Name = "storageTextBox";
+            this.storageTextBox.ReadOnly = true;
             this.storageTextBox.Size = new System.Drawing.Size(339, 109);
             this.storageTextBox.TabIndex = 50;
             this.storageTextBox.Text = "";
@@ -307,6 +318,7 @@
             this.cpuTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cpuTextBox.Location = new System.Drawing.Point(13, 439);
             this.cpuTextBox.Name = "cpuTextBox";
+            this.cpuTextBox.ReadOnly = true;
             this.cpuTextBox.Size = new System.Drawing.Size(345, 109);
             this.cpuTextBox.TabIndex = 44;
             this.cpuTextBox.Text = "";
@@ -318,6 +330,7 @@
             this.ramTextBox.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ramTextBox.Location = new System.Drawing.Point(495, 439);
             this.ramTextBox.Name = "ramTextBox";
+            this.ramTextBox.ReadOnly = true;
             this.ramTextBox.Size = new System.Drawing.Size(352, 109);
             this.ramTextBox.TabIndex = 47;
             this.ramTextBox.Text = "";

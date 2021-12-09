@@ -69,7 +69,7 @@ namespace UnitTests
             TestContext.Progress.WriteLine("FileAccess: " + storageTest.ToString());
             Assert.IsTrue(storageTest == 100);
 
-            storageTest = storage.FileAccess(@"E:\\", 8096, 512);
+            storageTest = storage.FileAccess(@"E:\\", 8096, 1024);
             TestContext.Progress.WriteLine("FileAccess: " + storageTest.ToString());
 
             Assert.IsTrue(storageTest == 100);
