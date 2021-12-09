@@ -360,6 +360,15 @@ For the GpuInformation, the VideoMemoryType and VideoArchitecture will be encode
 
 In order to use the application, a GUI (Graphical user interface) is needed. The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based user interfaces, typed command labels or text navigation. GUIs were introduced in reaction to the perceived steep learning curve of command-line interfaces (CLIs), which require commands to be typed on a computer keyboard.
 
+For this purpose, the following mockups were created:
+
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Main_Menu.drawio.png)
+
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CustomTests_Menu.drawio.png)
+
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Microsoft_Menu.drawio.png)
+
+In order to create and manage the GUI, we will use the Windows Forms classes and library. Windows Forms is a Graphical User Interface(GUI) class library which is bundled in .Net Framework. Its main purpose is to provide an easier interface to develop the applications for desktop, tablet, PCs. It is also termed as the WinForms. The applications which are developed by using Windows Forms or WinForms are known as the Windows Forms Applications that runs on the desktop computer. WinForms can be used only to develop the Windows Forms Applications not web applications. WinForms applications can contain the different type of controls like labels, list boxes, tooltip etc.[^18](#bibliography)
 
 
 <div style="page-break-after: always;"></div>
@@ -786,6 +795,144 @@ private static string GetVideoArchitecture(ManagementObject obj)
 
 ### GUI
 
+Actual implementation of the GUI requires two steps:
+
+#### The Form.Designer.cs 
+
+This file which is modified using the ToolBox feature available in the Visual Studio C# template. This feature is simply Drag&Drop methodology with complex objects that have a lot of useful accessible public properties, like the name of the object, font, size, is ReadOnly etc. Such a window looks something like:
+
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+
+#### The Form.cs
+
+This is the file where all the useful code is written. This part is specific for each form and has the Constructor and the auxiliary methods that are bound to graphic elements
+
+##### Main Menu UI
+
+Here, the buttons 1 and 2 (Microsoft Benchmark and Custom Benchmark buttons) create a new instance of the MicrosoftBenchmarkUI, respectively ComputedBenchmark classes, whereas button 3 exits the program.
+
+```
+private void button1_Click(object sender, EventArgs e)
+{
+    MicrosoftBenchmarkUI microsoftBenchmarkUI = new MicrosoftBenchmarkUI();
+    microsoftBenchmarkUI.ShowDialog();
+}
+
+private void button2_Click(object sender, EventArgs e)
+{
+    ComputedBenchmark computedBenchmark = new ComputedBenchmark();
+    computedBenchmark.ShowDialog();
+}
+
+private void button3_Click(object sender, EventArgs e)
+{
+    this.Close();
+}
+```
+
+
+##### MicrosoftBenchmarkUI
+
+In order to save computing time, the application creates a new thread to fetch the microsoft information for each of the desired components (CPU, GPU, RAM, Storage, Battery), and then it prints said information in richTextBoxes. These are locations where the formated text should be written.
+
+```
+Parallel.Invoke(
+    () => {
+        cpuData = Backend.MicrosoftBenchmark.CpuData();
+        cpuTextBox.Text = cpuData.ToString();
+    },
+    () => {
+        gpuData = Backend.MicrosoftBenchmark.GpuData();
+        gpuTextBox.Text = "";
+        gpuData.ForEach(gpu => gpuTextBox.Text += gpu.ToString() + "\n");
+    },
+    () => {
+        ramData = Backend.MicrosoftBenchmark.RamData();
+        ramTextBox.Text = "";
+        ramData.ForEach(ram => ramTextBox.Text += ram.ToString() + "\n");
+    },
+    () => {
+        storageData = Backend.MicrosoftBenchmark.StorageData();
+        storageTextBox.Text = "";
+        storageData.ForEach(storageSolution => storageTextBox.Text += storageSolution.ToString() + "\n");
+    },
+    () => {
+        batteryData = Backend.MicrosoftBenchmark.BatteryData();
+        batteryTextBox.Text = batteryData.ToString();
+    }
+);  
+```
+
+##### ComputedBenchmark
+
+This form is more complicated than the rest, because it has dropdown elements and select path element. These are important, because they enable the user to select the preffered kind of test (Light, Medium, Stress or Extreme).
+
+###### Path Selection
+
+This element uses the ```FolderBrowserDialog``` class, in order to open a dialog window, select the desired path of the storage test and then store this information in a string variable:
+
+```
+using (var fbd = new FolderBrowserDialog())
+{
+    DialogResult result = fbd.ShowDialog();
+
+    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+    {
+        selectionFileTextBox.Text = "Folder Selected:\n"+fbd.SelectedPath;
+        pathSelected = fbd.SelectedPath;
+
+        if (fbd.SelectedPath.Contains("C:\\"))
+        {
+            MessageBox.Show("The Benchmark will fail if not started in admin mode", "Message");
+        }
+    }
+}
+```
+
+###### DropDown
+
+This element is activate upon index change of the respective comboBox element and it was implemented. These methods were crucial in the user choice parsing procedure and it was implemented (for example is the storage ComboBox) as follows:
+
+```
+private void storageComboBox_SelectedIndexChanged(object sender, EventArgs e)
+{
+    ComboBox cmb = (ComboBox)sender;
+    string selectedValue = cmb.SelectedItem.ToString();
+    selectedValue = selectedValue.Substring(0, selectedValue.IndexOf(" "));
+    storageChoice = selectedValue;
+}
+```
+
+###### Actual ```Start Test``` Button
+
+These methods gather all the information from the GUI that is necessary for the required test and then block all the user interaction with the GUI and run said tests.
+
+1. For the CPU it is run the ```CPU.RunMIPSTests()``` and ```CPU.RunSimpleOperationsTests()```
+2. For the RAM, according to the test selected, it is written/read from memory 8Mb with the following repetition behaviour (16 repetitions, 32\*16 repetitions,128\*16 repetitions,1024\*16 repetitions)
+3. For the Storage, according to the test selected, it is written/read from the selected path 500Mb with the following repetition behaviour (1 repetitions, 32 repetitions,128 repetitions,1024 repetitions)
+
+A choice type method has the following implementation, returning a string to the richTextBox:
+
+```
+switch (choice)
+{
+    case "Light":
+        returnValue = Test();
+        break;
+    case "Medium":
+        returnValue = Test();
+        break;
+    case "Stress":
+        returnValue = Test();
+        break;
+    case "Extreme":
+        returnValue = Test();
+        break;
+}
+return "The health of the [component] is at" + returnValue.ToString();
+```
+
+
 <div style="page-break-after: always;"></div>
 
 # Testing and validation
@@ -938,3 +1085,4 @@ The calls to the Computer System Hardware Classes provide the user with a wide r
 16. [Sha 256](https://www.n-able.com/blog/sha-256-encryption)
 17. [Microsoft Computer System Hardware Classes](https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/computer-system-hardware-classes)
 18. [Hard Disk Information](https://en.wikipedia.org/wiki/Hard_disk_drive)
+19. [Windows Forms](https://docs.microsoft.com/en-us/visualstudio/ide/create-csharp-winform-visual-studio?view=vs-2022)
