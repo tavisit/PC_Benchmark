@@ -801,7 +801,7 @@ Actual implementation of the GUI requires two steps:
 
 This file which is modified using the ToolBox feature available in the Visual Studio C# template. This feature is simply Drag&Drop methodology with complex objects that have a lot of useful accessible public properties, like the name of the object, font, size, is ReadOnly etc. Such a window looks something like:
 
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/WindowsFormsTemplate.png)
 
 #### The Form.cs
 
