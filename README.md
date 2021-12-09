@@ -1,13 +1,10 @@
 ![UTCN](https://doctorat.utcluj.ro/images/utcn-logo.png)
 ## Student Octavian-Mihai Matei
 ### Group 30431
+
 <div style="page-break-after: always;"></div>
 
 # PC Benchmark application in C#
-
-### QR to the [github repository](https://github.com/tavisit/PC_Benchmark)
-![image](https://user-images.githubusercontent.com/28965189/139591086-13d46bde-bc08-434e-9dd7-14d024f98768.png)
-<div style="page-break-after: always;"></div>
 
 # Table of contents
 
@@ -41,7 +38,15 @@
 - [Testing and validation](#testing-and-validation)
 - [Conclusions](#conclusions)
 - [Bibliography](#bibliography)
+
+
 <div style="page-break-after: always;"></div>
+
+### QR to the [github repository](https://github.com/tavisit/PC_Benchmark)
+![image](https://user-images.githubusercontent.com/28965189/139591086-13d46bde-bc08-434e-9dd7-14d024f98768.png)
+
+<div style="page-break-after: always;"></div>
+
 
 # Introduction
 
@@ -55,6 +60,7 @@ These tests should be comparable with the system status and online information p
 
 ## Specifications
 For the local application, the program should apply specific algorithms, in order to determine in the most efficient way the status of the system, as well as work out any major flaw in the RAM configuration. It will run on the machine directly, to be able to access the hardware components more easily. After the tests are done, the results will be displayed in a user-friendly way to the screen and a rank fetched from the service will be displayed. If the user wants to share any information with the service, they will can do it.
+
 <div style="page-break-after: always;"></div>
 
 # Bibliographic Study
@@ -94,6 +100,7 @@ Microsoft provides with a lot of information about the system, information which
 The application will have the ability to display similar systems or better ones, in order to tell the user what is wrong and what can be changed. Moreover, the system will have the ability to upload the system specifications on the service to be used by other people. From our experience, the most facil way for us to implement a Saas[^10](#bibliography) is to use ASP.NET with a MVC methodology.
 
 ![](https://static.javatpoint.com/tutorial/reactjs/images/react-flux-vs-mvc.png)
+
 <div style="page-break-after: always;"></div>
 
 # Planning
@@ -120,6 +127,7 @@ The application will have the ability to display similar systems or better ones,
 - Until 14th December:
   * Finalize the documentation
 - Present the project on the 14th December
+
 <div style="page-break-after: always;"></div>
 
 # Analysis
@@ -177,6 +185,9 @@ mov     ebx, 10
 sub     eax, ebx
 ```
 
+
+<div style="page-break-after: always;"></div>
+
 ## RAM analysis
 
 Random-access memory (RAM) is a form of computer memory that can be read and changed in any order, typically used to store working data and machine code. A random-access memory device allows data items to be read or written in almost the same amount of time irrespective of the physical location of data inside the memory, in contrast with other direct-access data storage media (such as hard disks, CD-RWs, DVD-RWs and the older magnetic tapes and drum memory), where the time required to read and write data items varies significantly depending on their physical locations on the recording medium, due to mechanical limitations such as media rotation speeds and arm movement.
@@ -188,6 +199,9 @@ RAM contains multiplexing and demultiplexing circuitry, to connect the data line
 In order to test the RAM Health, a bit per bit check will be required. Unfortunately, this is impossible in the modern programming languages, so a 4/8 bytes chunk will be used at a time in the form of an int. These values will be x5555 (0101010101010101) and xAAAA (1010101010101010).
 
 These values will be written and read from RAM multiple times and discrepancys between write and read values will be added to an errorCheck. In the end, the fraction of the errorCheck and total values will be computed and a procentage will be displayed.
+
+
+<div style="page-break-after: always;"></div>
 
 ## Storage analysis
 
@@ -203,6 +217,7 @@ In order to test the Storage Health, a bit per bit check will be required. Unfor
 
 These values will be written and read from RAM multiple times and discrepancys between write and read values will be added to an errorCheck. In the end, the fraction of the errorCheck and total values will be computed and a procentage will be displayed.
 
+
 <div style="page-break-after: always;"></div>
 
 ## Microsoft Defined Data Structures Information
@@ -212,6 +227,7 @@ The Computer System Hardware category groups classes together that represent har
 For example, it can be used to enumerate all disk drives, network adapters, processes and many more management objects on a system, or to query for all network connections that are up, services that are paused, and so on. When instantiated, an instance of this class takes as input a WMI query represented in an ObjectQuery or its derivatives, and optionally a ManagementScope representing the WMI namespace to execute the query in. It can also take additional advanced options in an EnumerationOptions. 
 
 When the Get() method on this object is invoked, the ManagementObjectSearcher executes the given query in the specified scope and returns a collection of management objects that match the query in a ManagementObjectCollection.
+
 <div style="page-break-after: always;"></div>
 
 # Design
@@ -219,7 +235,17 @@ When the Get() method on this object is invoked, the ManagementObjectSearcher ex
 ## Local application design
 
 #### Class Diagram
+
+The Unified Modeling Language (UML) is a general-purpose modeling language in the field of software engineering that is intended to provide a standard way to visualize the design of a system. This standard was created from the desire to standardize the systems of notation required by software design.
+
+A class diagram is a diagram used in designing and modeling software to describe classes and their relationships. Class diagrams enable us to model software in a high level of abstraction and without having to look at the source code. Classes in a class diagram correspond with classes in the source code. The diagram shows the names and attributes of the classes, connections between the classes, and sometimes also the methods of the classes.
+
+Being said that, the following class diagram was created for this project:
+
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/ClassDiagram.png?raw=true)
+
+<div style="page-break-after: always;"></div>
+
 
 #### Class explanation
 
@@ -267,6 +293,7 @@ The MicrosoftBenchmark class should have 5 public classes:
 <div style="page-break-after: always;"></div>
 
 ### CPU Benchmark Design
+
 The user will not interact directly with these algorithms, but the application will, so bellow it is described the use case diagram:
 
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/USE%20CASES.png?raw=true)
@@ -286,6 +313,8 @@ foreach (ProcessThread pt in Process.GetCurrentProcess().Threads)
 }
 ```
 
+<div style="page-break-after: always;"></div>
+
 All the other private methods should be:
 
 1. BenchmarkSHA256 -> Run a benchmark which runs a simple string to sha256 algorithm and measure its execution MIPS
@@ -295,11 +324,13 @@ All the other private methods should be:
 
 All the Benchmark named methods will run multiple times and average the results, in order to obtain a more consistent measurement.
 
+<div style="page-break-after: always;"></div>
+
 ### RAM Benchmark Design
 
-![](https://www.deskdecode.com/wp-content/uploads/2019/06/Random_vs_sequential_access-1.png)
-
 As seen from the UML, this benchmark will be composed from only one class, with two public methods:
+
+![](https://www.deskdecode.com/wp-content/uploads/2019/06/Random_vs_sequential_access-1.png)
 
 1. SequentialAccess with size of data type and number of repetitions as parameters -> Runs a benchmark for the sequential read/write capabilities of the RAM.
 2. RandomAccess with size of data type and number of repetitions- as parameters> Runs a benchmark for the random rear/write capabilities of the RAM.
@@ -310,6 +341,9 @@ Sequential access in ram will be made using arrays in the form of the ```uint[]`
 The test will firstly write ```0x5555``` equivalent integer to RAM for a number of times equivalent to the size parameter, then it will read from RAM and count the errors. The same algorithm will be applied for the ```0xAAAA``` equivalent integer on RAM and append to the error variable.
 
 In order to bypass the CPU cache used for small variables, byte size wise, one needs to run the benchmark for bigger sizes of lists and arrays, using a lot of data to detect any diffect. INTEL manual recomands around 1024 * size of RAM of data ran for around one week.
+
+
+<div style="page-break-after: always;"></div>
 
 ### Storage Benchmark Design
 
@@ -322,6 +356,9 @@ As seen from the UML, this benchmark will be composed from only one class, with 
 The user should be able to select from the UI the file path in which the test runs. The test will firstly write ```0x5555``` equivalent integer to the file for a number of lines equivalent to the size parameter, then it will read the file and count the errors. The same algorithm will be applied for the ```0xAAAA``` equivalent integer to the file and append to the error variable.
 
 In order to bypass the Storage cache used for small variables, byte size wise, one needs to run the benchmark for bigger sizes of files, using a lot of data to detect any diffect.
+
+
+<div style="page-break-after: always;"></div>
 
 ### Microsoft Defined Data Structures Integration Design
 
@@ -356,27 +393,33 @@ For every information class, the same sequence of lines of codes will be respece
 
 For the GpuInformation, the VideoMemoryType and VideoArchitecture will be encoded, so a decoder in the form of a switch will be required.
 
+
+<div style="page-break-after: always;"></div>
+
 ### GUI Design
 
 In order to use the application, a GUI (Graphical user interface) is needed. The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based user interfaces, typed command labels or text navigation. GUIs were introduced in reaction to the perceived steep learning curve of command-line interfaces (CLIs), which require commands to be typed on a computer keyboard.
 
 For this purpose, the following mockups were created:
 
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Main_Menu.drawio.png)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Main_Menu.drawio.png?raw=true)
 
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CustomTests_Menu.drawio.png)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CustomTests_Menu.drawio.png?raw=true)
 
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Microsoft_Menu.drawio.png)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Microsoft_Menu.drawio.png?raw=true)
 
-In order to create and manage the GUI, we will use the Windows Forms classes and library. Windows Forms is a Graphical User Interface(GUI) class library which is bundled in .Net Framework. Its main purpose is to provide an easier interface to develop the applications for desktop, tablet, PCs. It is also termed as the WinForms. The applications which are developed by using Windows Forms or WinForms are known as the Windows Forms Applications that runs on the desktop computer. WinForms can be used only to develop the Windows Forms Applications not web applications. WinForms applications can contain the different type of controls like labels, list boxes, tooltip etc.[^18](#bibliography)
+In order to create and manage the GUI, we will use the Windows Forms classes and library. Windows Forms is a Graphical User Interface(GUI) class library which is bundled in .Net Framework. Its main purpose is to provide an easier interface to develop the applications for desktop, tablet, PCs. It is also termed as the WinForms. 
 
+The applications which are developed by using Windows Forms or WinForms are known as the Windows Forms Applications that runs on the desktop computer. WinForms can be used only to develop the Windows Forms Applications not web applications. WinForms applications can contain the different type of controls like labels, list boxes, tooltip etc.[^18](#bibliography)
 
 <div style="page-break-after: always;"></div>
 
 # Implementation
 
 ## Local application
+
 ### CPU Benchmark
+
 The implementation needed some libraries that should be mentioned here:
 1. [System.Security.Cryptography](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography?view=net-5.0) -> Library that creates and outputs the SHA of a given raw data string
 2. [System.Environment](https://docs.microsoft.com/en-us/dotnet/api/system.environment?view=net-5.0) -> Library that detects the environment and outputs the number of physical cores
@@ -384,7 +427,9 @@ The implementation needed some libraries that should be mentioned here:
 4. [System.Numerics](https://docs.microsoft.com/en-us/dotnet/api/system.numerics?view=net-5.0) -> Library that enables the use of large numbers for the MIPS calculation
 
 The implementation of the public methods is the following:
+
 ##### RunMIPSTests
+
 ```
 public float RunMIPSTests()
 {
@@ -412,6 +457,7 @@ public float RunMIPSTests()
 As it can be observed, for every physical processor, the application sets the the CPU affinity to that processor and then it computes the MIPS, returning the actual value.
 
 ##### RunSimpleOperationsTests
+
 ```
 public float RunSimpleOperationsTests()
 {
@@ -441,6 +487,7 @@ As it can be observed, for every physical processor, the application sets the th
 As for the actual tests, the private methods have the following implementation:
 
 ##### BenchmarkSHA256
+
 ```
 private float BenchmarkSHA256(int nrTests)
 {
@@ -490,6 +537,7 @@ This method has two clock, one for the actual number of cycles of execution of t
 It will compute the power 128 of 3 and count the clock cycles.
 
 ##### BenchmarkForLoops
+
 ```
 private float BenchmarkForLoops(int nrTests)
 {
@@ -517,6 +565,7 @@ This method has two clock, one for the actual number of cycles of execution of t
 It will loop in loop for nrTests times and inverse the variable a and count the clock cycles.
 
 ##### BenchmarkSimpleOperations
+
 ```
 private int BenchmarkSimpleOperations(int nrTests)
 {
@@ -550,6 +599,8 @@ private int BenchmarkSimpleOperations(int nrTests)
 ```
 This method has two clock, one for the actual number of cycles of execution of the algorithm, the other for the total miliseconds passed.
 It will count the add operation, then the substraction operation to return the number of clock cycles needed to perform such operation.
+
+
 <div style="page-break-after: always;"></div>
 
 ### RAM Benchmark
@@ -593,6 +644,8 @@ for (int repeat = 0; repeat < repeating; repeat++)
 }
 return 100 * ((float)errorCount / (float)size);
 ```
+
+
 <div style="page-break-after: always;"></div>
 
 ### Storage Benchmark
@@ -637,6 +690,7 @@ File.Delete(path);
 
 return 100 * ((float)errorCount / (float)size);
 ```
+
 <div style="page-break-after: always;"></div>
 
 ### Microsoft Defined Data Structures Integration
@@ -711,6 +765,9 @@ public static List<StorageInformation> StorageData()
     return storageInformationList;
 }
 ```
+
+
+<div style="page-break-after: always;"></div>
 
 ##### Decoding video card special properties
 
@@ -793,6 +850,9 @@ private static string GetVideoArchitecture(ManagementObject obj)
 }
 ```
 
+
+<div style="page-break-after: always;"></div>
+
 ### GUI
 
 Actual implementation of the GUI requires two steps:
@@ -801,7 +861,7 @@ Actual implementation of the GUI requires two steps:
 
 This file which is modified using the ToolBox feature available in the Visual Studio C# template. This feature is simply Drag&Drop methodology with complex objects that have a lot of useful accessible public properties, like the name of the object, font, size, is ReadOnly etc. Such a window looks something like:
 
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/WindowsFormsTemplate.png)
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/WindowsFormsTemplate.png?raw=true)
 
 #### The Form.cs
 
@@ -829,7 +889,6 @@ private void button3_Click(object sender, EventArgs e)
     this.Close();
 }
 ```
-
 
 ##### MicrosoftBenchmarkUI
 
@@ -932,7 +991,6 @@ switch (choice)
 return "The health of the [component] is at" + returnValue.ToString();
 ```
 
-
 <div style="page-break-after: always;"></div>
 
 # Testing and validation
@@ -971,6 +1029,8 @@ public void RAMTest()
 }
 ```
 
+<div style="page-break-after: always;"></div>
+
 ## Storage
 
 In order to test the efficiency of the algorithm, a batch of unit tests were created. They test the result of the only public methods from the Storage class in the following manner:
@@ -996,6 +1056,8 @@ public void OtherDriveTest()
 }
 ```
 
+<div style="page-break-after: always;"></div>
+
 ## Microsoft Defined Data Structures Integration
 
 In order to test the usefulness of the Microsoft library, a batch of unit tests were created. They test the presence of certain elements that are specific to the test machine, as well as, test the good implementation of the MicrosoftBenchmark class.
@@ -1010,7 +1072,9 @@ public void [Component]DataTest()
     // custom tests tailored for each component
 }
 ```
+
 A specific example for this behavior is the ```CpuDataTest()```which has the following implementation:
+
 ```
 [Test]
 public void CpuDataTest()
@@ -1024,11 +1088,15 @@ public void CpuDataTest()
     Assert.True(cpuInformation.NrLogicalProcessors.EqualsLower("8"));
 }
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## Whole Test Unit package
 
 As can be seen from the Test Explorer provided by VisualStudio, all the tests pass:
 
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/MicrosoftLibrary_UnitTests.png?raw=true)
+
 
 <div style="page-break-after: always;"></div>
 
@@ -1061,7 +1129,11 @@ That is around 32Gb written and read from the whole system storage, which would 
 
 ## Microsoft Defined Data Structures Integration
 
-The calls to the Computer System Hardware Classes provide the user with a wide range of available information that can be used. In this application, information about the CPU, RAM, Storage, Battery and GPU were fetched and used with success.
+The calls to the Computer System Hardware Classes provide the user with a wide range of available information that can be used. In this application, information about the CPU, RAM, Storage, Battery and GPU were fetched and used with success. As can be seen from a screenshot from the application, the results are:
+
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/Microsoft_Menu_Done.png?raw=true)
+
+These results were validated by the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) application, as well as, the [Steam Hardware & Software Survey](https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam) application.
 
 <div style="page-break-after: always;"></div>
 
