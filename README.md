@@ -31,7 +31,6 @@
     + [Storage Benchmark Design](#storage-benchmark-design)
     + [Microsoft Defined Data Structures Integration Design](#microsoft-defined-data-structures-integration-design)
     + [GUI Design](#gui-design)
-  * [Service Design](#service-design)
 - [Implementation](#implementation)
   * [Local application](#local-application)
     + [CPU Benchmark](#cpu-benchmark)
@@ -39,7 +38,6 @@
     + [Storage Benchmark](#storage-benchmark)
     + [Microsoft Defined Data Structures Integration](#microsoft-defined-data-structures-integration)
     + [GUI](#gui)
-  * [Service](#service)
 - [Testing and validation](#testing-and-validation)
 - [Conclusions](#conclusions)
 - [Bibliography](#bibliography)
@@ -120,9 +118,6 @@ The application will have the ability to display similar systems or better ones,
   * Implement the GUI classes
   * Write the implementation in documentation
 - Until 14th December:
-  * Write Design of the Service in documentation
-  * Implement the service benchmark classes
-  * Write the implementation in documentation
   * Finalize the documentation
 - Present the project on the 14th December
 <div style="page-break-after: always;"></div>
@@ -362,7 +357,11 @@ For every information class, the same sequence of lines of codes will be respece
 For the GpuInformation, the VideoMemoryType and VideoArchitecture will be encoded, so a decoder in the form of a switch will be required.
 
 ### GUI Design
-## Service Design
+
+In order to use the application, a GUI (Graphical user interface) is needed. The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based user interfaces, typed command labels or text navigation. GUIs were introduced in reaction to the perceived steep learning curve of command-line interfaces (CLIs), which require commands to be typed on a computer keyboard.
+
+
+
 <div style="page-break-after: always;"></div>
 
 # Implementation
@@ -786,7 +785,7 @@ private static string GetVideoArchitecture(ManagementObject obj)
 ```
 
 ### GUI
-## Service
+
 <div style="page-break-after: always;"></div>
 
 # Testing and validation
@@ -809,9 +808,6 @@ public void OneSimpleOperationsTest()
     Assert.IsTrue(cpuSimpleOperationsValue < 5);
 }
 ```
-Looking at the Task Manager on the machine, it can be seen that when it runs on a specific CPU processor, there is a 100% spike in its activity.
-![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
-<div style="page-break-after: always;"></div>
 
 ## RAM
 
@@ -881,11 +877,44 @@ public void CpuDataTest()
     Assert.True(cpuInformation.NrLogicalProcessors.EqualsLower("8"));
 }
 ```
+## Whole Test Unit package
+
 As can be seen from the Test Explorer provided by VisualStudio, all the tests pass:
+
 ![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/MicrosoftLibrary_UnitTests.png?raw=true)
+
 <div style="page-break-after: always;"></div>
 
 # Conclusions
+
+## CPU Benchmark
+
+Looking at the Task Manager on the machine, it can be seen that when it runs on a specific CPU processor, there is a 100% spike in its activity.
+![](https://github.com/tavisit/PC_Benchmark/blob/main/Resources/CPU_Usage.png?raw=true)
+
+## RAM
+
+Contrary to expectations, running the health analysis on RAM did not output any bit-wise error. The tests were made using the following data volume:
+
+- 1Gb * sizeof(int)               - taking 25 seconds to complete
+- 1Gb * sizeof(int) * 32          - taking 11.2 minutes to complete
+- 1Gb * sizeof(int) * 128         - taking 44.4 minutes to complete
+
+That is around 512Gb written and read from RAM, which would yield minimum one error. This behaviour correlates to the power of the bit&byte correction available at the hardware and sotfware level, corrections that cannot be bypassed with modern programming languages.
+
+## Storage
+
+Contrary to expectations, running the health analysis on RAM did not output any bit-wise error. The tests were made using the following data volume:
+
+- 8Kb * sizeof(int)               - taking 0.5 seconds to complete
+- 8Kb * sizeof(int) * 32          - taking 17 seconds to complete
+- 8Kb * sizeof(int) * 1024         - taking 8 minutes to complete
+
+That is around 32Gb written and read from the whole system storage, which would yield minimum one error. This behaviour correlates to the power of the bit&byte correction available at the hardware and sotfware level, corrections that cannot be bypassed with modern programming languages.
+
+## Microsoft Defined Data Structures Integration
+
+The calls to the Computer System Hardware Classes provide the user with a wide range of available information that can be used. In this application, information about the CPU, RAM, Storage, Battery and GPU were fetched and used with success.
 
 <div style="page-break-after: always;"></div>
 
