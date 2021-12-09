@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Benchmark.Backend;
 
 namespace Benchmark.Frontend
 {
@@ -15,6 +16,28 @@ namespace Benchmark.Frontend
         public Main()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MicrosoftBenchmarkUI microsoftBenchmarkUI = new MicrosoftBenchmarkUI();
+            microsoftBenchmarkUI.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ComputedBenchmark computedBenchmark = new ComputedBenchmark();
+            computedBenchmark.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

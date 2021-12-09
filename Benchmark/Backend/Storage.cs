@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using NUnit.Framework;
+using System.IO;
 
 namespace Benchmark.Backend
 {
     public class Storage
     {
-        private uint _firstValue = 0x5555;
-        private uint _secondValue = 0xAAAA;
+        private readonly uint _firstValue = 0x5555;
+        private readonly uint _secondValue = 0xAAAA;
 
         public float FileAccess(string path,int size, int repeating)
         {
@@ -14,15 +15,28 @@ namespace Benchmark.Backend
 
             for (int repeat = 0; repeat < repeating; repeat++)
             {
-                if(File.Exists(path))
+                if (repeat % 32 == 0)
                 {
-                    File.Delete(path);
+                    TestContext.Progress.WriteLine(repeat);
                 }
 
+                try
+                {
+                    if (File.Exists(path))
+                    {
+                        File.Delete(path);
+                    }
+                }catch(IOException)
+                {
+                    return -1f;
+                }
+
+                string writingValue = "";
                 for (int i = 0; i < size; i++)
                 {
-                    File.AppendAllText(path, _firstValue.ToString()+"\n");
+                    writingValue += _firstValue.ToString() + "\n";
                 }
+                File.AppendAllText(path, writingValue);
 
                 foreach (string line in File.ReadLines(path))
                 {
@@ -31,12 +45,22 @@ namespace Benchmark.Backend
                         errorCount++;
                     }
                 }
-                File.Delete(path);
+
+                try
+                {
+                    File.Delete(path);
+                }
+                catch (IOException)
+                {
+                    return -1f;
+                }
+
+                writingValue = "";
                 for (int i = 0; i < size; i++)
                 {
-
-                    File.AppendAllText(path, _secondValue.ToString() + "\n");
+                    writingValue += _secondValue.ToString() + "\n";
                 }
+                File.AppendAllText(path, writingValue);
 
                 foreach (string line in File.ReadLines(path))
                 {
@@ -48,7 +72,7 @@ namespace Benchmark.Backend
                 File.Delete(path);
             }
 
-            return 100 * ((float)errorCount / (float)size);
+            return 100-100 * ((float)errorCount / (float)size);
         }
     }
 }

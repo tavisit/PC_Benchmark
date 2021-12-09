@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace Benchmark.Backend
 {
     public class RAM
     {
-        private uint _firstValue = 0x5555;
-        private uint _secondValue = 0xAAAA;
+        private readonly uint _firstValue = 0x5555;
+        private readonly uint _secondValue = 0xAAAA;
 
         public float SequentialAccess(int size, int repeating)
         {
@@ -14,6 +15,11 @@ namespace Benchmark.Backend
 
             for (int repeat = 0;repeat<repeating;repeat++)
             {
+                if(repeat % 32 == 0)
+                {
+                    TestContext.Progress.WriteLine(repeat);
+                }
+
                 for (int i = 0; i < size; i++)
                 {
                     setOfNumbers[i] = _firstValue;
@@ -41,7 +47,7 @@ namespace Benchmark.Backend
                 }
             }
             
-            return 100*((float)errorCount/(float)size);
+            return 100 - 100*((float)errorCount/(float)size);
         }
 
         public float RandomAccess(int size, int repeating)
@@ -51,6 +57,10 @@ namespace Benchmark.Backend
 
             for (int repeat = 0; repeat < repeating; repeat++)
             {
+                if (repeat % 32 == 0)
+                {
+                    TestContext.Progress.WriteLine(repeat);
+                }
 
                 setOfNumbers.Clear();
                 for (int i = 0; i < size; i++)
@@ -80,7 +90,7 @@ namespace Benchmark.Backend
                     }
                 }
             }
-            return 100 * ((float)errorCount / (float)size);
+            return 100 - 100 * ((float)errorCount / (float)size);
         }
 
     }

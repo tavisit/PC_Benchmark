@@ -88,6 +88,7 @@ namespace Benchmark.Backend
                 if (obj["Name"] != null)  batteryInformation.Name = obj["Name"].ToString();
                 if (obj["Status"] != null)  batteryInformation.Status = obj["Status"].ToString();
                 if (obj["EstimatedChargeRemaining"] != null)  batteryInformation.EstimatedChargeRemaining = obj["EstimatedChargeRemaining"].ToString();
+                if (obj["EstimatedRunTime"] != null)  batteryInformation.EstimatedRunTime = obj["EstimatedRunTime"].ToString();
                 if (obj["FullChargeCapacity"] != null)  batteryInformation.FullChargeCapacity = obj["FullChargeCapacity"].ToString();
                 if (obj["DesignCapacity"] != null)  batteryInformation.DesignCapacity = obj["DesignCapacity"].ToString();
                 if (obj["DesignVoltage"] != null)  batteryInformation.DesignVoltage = obj["DesignVoltage"].ToString();

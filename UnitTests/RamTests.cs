@@ -17,8 +17,8 @@ namespace UnitTests
             float sequentialRAM = ram.SequentialAccess(1073741824, 1);
             float randomRAM = ram.RandomAccess(1073741824, 1);
 
-            Assert.IsTrue(sequentialRAM == 0);
-            Assert.IsTrue(randomRAM == 0);
+            Assert.IsTrue(sequentialRAM == 100);
+            Assert.IsTrue(randomRAM == 100);
         }
 
         [Test]
@@ -27,15 +27,15 @@ namespace UnitTests
             float sequentialRAM = ram.SequentialAccess(1073741824, 32);
             float randomRAM = ram.RandomAccess(1073741824, 32);
 
-            Assert.IsTrue(sequentialRAM == 0);
-            Assert.IsTrue(randomRAM == 0);
+            Assert.IsTrue(sequentialRAM == 100);
+            Assert.IsTrue(randomRAM == 100);
         }
 
         [Test]
         public void StressRAMTest()
         {
-            float sequentialRAM = ram.SequentialAccess(1073741824, 10240);
-            float randomRAM = ram.RandomAccess(1073741824, 10240);
+            float sequentialRAM = ram.SequentialAccess(1073741824, 1024);
+            float randomRAM = ram.RandomAccess(1073741824, 1024);
 
             Assert.IsTrue(sequentialRAM >= 0);
             Assert.IsTrue(randomRAM >= 0);

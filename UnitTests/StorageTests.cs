@@ -14,19 +14,19 @@ namespace UnitTests
         [Test]
         public void LightSystemDriveTest()
         {
-            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 32000, 1);
+            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 8096, 1);
 
-            Assert.IsTrue(storageTest == 0);
+            Assert.IsTrue(storageTest == 100);
         }
 
         [Test]
         public void LightSsdDriveTest()
         {
-            float storageTest = storage.FileAccess(@"D:\\", 32000, 1);
+            float storageTest = storage.FileAccess(@"D:\\", 8096, 1);
 
             Assert.IsTrue(storageTest == 0);
 
-            storageTest = storage.FileAccess(@"E:\\", 32000, 1);
+            storageTest = storage.FileAccess(@"E:\\", 8096, 1);
 
             Assert.IsTrue(storageTest == 0);
         }
@@ -34,7 +34,7 @@ namespace UnitTests
         [Test]
         public void MediumSystemDriveTest()
         {
-            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 32000, 32);
+            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 8096, 32);
 
             Assert.IsTrue(storageTest == 0);
         }
@@ -42,11 +42,11 @@ namespace UnitTests
         [Test]
         public void MediumSsdDriveTest()
         {
-            float storageTest = storage.FileAccess(@"D:\\", 32000, 32);
+            float storageTest = storage.FileAccess(@"D:\\", 8096, 32);
 
             Assert.IsTrue(storageTest == 0);
 
-            storageTest = storage.FileAccess(@"E:\\", 32000, 32);
+            storageTest = storage.FileAccess(@"E:\\", 8096, 32);
 
             Assert.IsTrue(storageTest == 0);
         }
@@ -54,7 +54,7 @@ namespace UnitTests
         [Test]
         public void StressSystemDriveTest()
         {
-            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 32000, 10240);
+            float storageTest = storage.FileAccess(@"C:\\Program Files\\BenchmarkPC\\", 8096, 16384);
 
             Assert.IsTrue(storageTest == 0);
         }
@@ -62,11 +62,11 @@ namespace UnitTests
         [Test]
         public void StressSsdDriveTest()
         {
-            float storageTest = storage.FileAccess(@"D:\\", 32000, 10240);
+            float storageTest = storage.FileAccess(@"D:\\", 8096, 16384);
 
             Assert.IsTrue(storageTest == 0);
 
-            storageTest = storage.FileAccess(@"E:\\", 32000, 10240);
+            storageTest = storage.FileAccess(@"E:\\", 8096, 16384);
 
             Assert.IsTrue(storageTest == 0);
         }
