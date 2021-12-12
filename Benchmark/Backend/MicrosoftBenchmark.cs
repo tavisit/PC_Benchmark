@@ -1,6 +1,7 @@
 ﻿using Benchmark.Backend.Entities;
 using System.Collections.Generic;
 using System.Management;
+using System.Windows.Forms;
 
 namespace Benchmark.Backend
 {
@@ -82,13 +83,21 @@ namespace Benchmark.Backend
             {
                 return batteryInformation;
             }
-
+            PowerLineStatus status = SystemInformation.PowerStatus.PowerLineStatus;
             foreach (ManagementObject obj in moc)
             {
                 if (obj["Name"] != null)  batteryInformation.Name = obj["Name"].ToString();
                 if (obj["Status"] != null)  batteryInformation.Status = obj["Status"].ToString();
-                if (obj["EstimatedChargeRemaining"] != null)  batteryInformation.EstimatedChargeRemaining = obj["EstimatedChargeRemaining"].ToString();
-                if (obj["EstimatedRunTime"] != null)  batteryInformation.EstimatedRunTime = obj["EstimatedRunTime"].ToString();
+                if(status == PowerLineStatus.Offline)
+                {
+                    if (obj["EstimatedChargeRemaining"] != null) batteryInformation.EstimatedChargeRemaining = obj["EstimatedChargeRemaining"].ToString();
+                    if (obj["EstimatedRunTime"] != null) batteryInformation.EstimatedRunTime = obj["EstimatedRunTime"].ToString();
+                }
+                else
+                {
+                    batteryInformation.EstimatedChargeRemaining = "Charging...";
+                    batteryInformation.EstimatedRunTime = "Charging...";
+                }
                 if (obj["FullChargeCapacity"] != null)  batteryInformation.FullChargeCapacity = obj["FullChargeCapacity"].ToString();
                 if (obj["DesignCapacity"] != null)  batteryInformation.DesignCapacity = obj["DesignCapacity"].ToString();
                 if (obj["DesignVoltage"] != null)  batteryInformation.DesignVoltage = obj["DesignVoltage"].ToString();

@@ -37,21 +37,32 @@ namespace Benchmark.Backend.Entities
                 }
                 else
                 {
+
                     if (prop.Name == "EstimatedRunTime")
                     {
-                        if (int.Parse(actualValue )> 1000)
+                        int actualValueInt = 0;
+                        try
                         {
-                            actualValue = "Charging";
-                        }
-                        else
-                        {
+                            int.Parse(actualValue);
                             actualValue += " minutes";
-
                         }
+                        catch (Exception e)
+                        {
+                            actualValue = actualValue;
+                        }
+
                     }
                     else if (prop.Name == "EstimatedChargeRemaining")
                     {
-                        actualValue += "%";
+                        int actualValueInt = 0;
+                        try
+                        {
+                            int.Parse(actualValue);
+                            actualValue += "%";
+                        }
+                        catch (Exception e)
+                        {
+                        }
                     }
 
                     toStringReturn += prop.Name + " : ";
