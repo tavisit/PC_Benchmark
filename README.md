@@ -96,11 +96,6 @@ The speed of the Storage would be the time the algorithm described above takes t
 #### Microsoft Defined Data Structures Information
 Microsoft provides with a lot of information about the system, information which can be used to validate and display as "Expected values" to the user. The same information can include the type of the CPU, the battery status, RAM type/frequency etc. These data structures can be used with a simple method call to obtain a lot of information about the current system, without the need to implement complex algorithms and manual testing of the performance.
 
-#### Service Side
-The application will have the ability to display similar systems or better ones, in order to tell the user what is wrong and what can be changed. Moreover, the system will have the ability to upload the system specifications on the service to be used by other people. From our experience, the most facil way for us to implement a Saas[^10](#bibliography) is to use ASP.NET with a MVC methodology.
-
-![](https://static.javatpoint.com/tutorial/reactjs/images/react-flux-vs-mvc.png)
-
 <div style="page-break-after: always;"></div>
 
 # Planning
