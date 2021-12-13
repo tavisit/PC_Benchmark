@@ -1117,8 +1117,8 @@ That is around 512Gb written and read from RAM, which would yield minimum one er
 Contrary to expectations, running the health analysis on RAM did not output any bit-wise error. The tests were made using the following data volume:
 
 - 128Kb * sizeof(int)               - taking 50 seconds to complete
-- 128Kb * sizeof(int) * 5           - taking 17 seconds to complete
-- 128Kb * sizeof(int) * 32          - taking 8 minutes to complete
+- 128Kb * sizeof(int) * 5           - taking 10 minutes to complete
+- 128Kb * sizeof(int) * 32          - taking 1 hour to complete
 
 That is around 32Gb written and read from the whole system storage, which would yield minimum one error. This behaviour correlates to the power of the bit&byte correction available at the hardware and sotfware level, corrections that cannot be bypassed with modern programming languages.
 
