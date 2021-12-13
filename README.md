@@ -962,8 +962,8 @@ private void storageComboBox_SelectedIndexChanged(object sender, EventArgs e)
 These methods gather all the information from the GUI that is necessary for the required test and then block all the user interaction with the GUI and run said tests.
 
 1. For the CPU it is run the ```CPU.RunMIPSTests()``` and ```CPU.RunSimpleOperationsTests()```
-2. For the RAM, according to the test selected, it is written/read from memory 8Mb with the following repetition behaviour (16 repetitions, 32\*16 repetitions,128\*16 repetitions,1024\*16 repetitions)
-3. For the Storage, according to the test selected, it is written/read from the selected path 500Mb with the following repetition behaviour (1 repetitions, 32 repetitions,128 repetitions,1024 repetitions)
+2. For the RAM, according to the test selected, it is written/read from memory 671Mb with the following repetition behaviour (16 repetitions, 32\*8 repetitions,128\*8 repetitions,128\*16 repetitions)
+3. For the Storage, according to the test selected, it is written/read from the selected path 128Mb with the following repetition behaviour (1 repetitions, 5 repetitions,32 repetitions,54 repetitions)
 
 A choice type method has the following implementation, returning a string to the richTextBox:
 
@@ -1116,9 +1116,9 @@ That is around 512Gb written and read from RAM, which would yield minimum one er
 
 Contrary to expectations, running the health analysis on RAM did not output any bit-wise error. The tests were made using the following data volume:
 
-- 8Kb * sizeof(int)               - taking 0.5 seconds to complete
-- 8Kb * sizeof(int) * 32          - taking 17 seconds to complete
-- 8Kb * sizeof(int) * 1024         - taking 8 minutes to complete
+- 128Kb * sizeof(int)               - taking 50 seconds to complete
+- 128Kb * sizeof(int) * 5           - taking 17 seconds to complete
+- 128Kb * sizeof(int) * 32          - taking 8 minutes to complete
 
 That is around 32Gb written and read from the whole system storage, which would yield minimum one error. This behaviour correlates to the power of the bit&byte correction available at the hardware and sotfware level, corrections that cannot be bypassed with modern programming languages.
 

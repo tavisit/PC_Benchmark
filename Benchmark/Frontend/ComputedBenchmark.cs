@@ -123,15 +123,15 @@ namespace Benchmark.Frontend
                     randomReturn = ram.RandomAccess(67108864, 16);
                     break;
                 case "Medium":
-                    sequentialReturn = ram.SequentialAccess(67108864, 32*16);
+                    sequentialReturn = ram.SequentialAccess(67108864, 32*8);
                     randomReturn = ram.RandomAccess(67108864, 32 * 16);
                     break;
                 case "Stress":
-                    sequentialReturn = ram.SequentialAccess(67108864, 128 * 16);
+                    sequentialReturn = ram.SequentialAccess(67108864, 128 * 8);
                     randomReturn = ram.RandomAccess(67108864, 128 * 16);
                     break;
                 case "Extreme":
-                    sequentialReturn = ram.SequentialAccess(67108864, 1024 * 16);
+                    sequentialReturn = ram.SequentialAccess(67108864, 128 * 16);
                     randomReturn = ram.RandomAccess(67108864, 1024 * 16);
                     break;
             }
@@ -149,16 +149,16 @@ namespace Benchmark.Frontend
             switch (storageChoice)
             {
                 case "Light":
-                    returnValue = storage.FileAccess(path, 8096, 1);
+                    returnValue = storage.FileAccess(path, 8096*16, 1);
                     break;
                 case "Medium":
-                    returnValue = storage.FileAccess(path, 8096, 32);
+                    returnValue = storage.FileAccess(path, 8096* 16, 5);
                     break;
                 case "Stress":
-                    returnValue = storage.FileAccess(path, 8096, 128);
+                    returnValue = storage.FileAccess(path, 8096* 16, 16);
                     break;
                 case "Extreme":
-                    returnValue = storage.FileAccess(path, 8096, 1024);
+                    returnValue = storage.FileAccess(path, 8096* 16, 64);
                     break;
             }
 
